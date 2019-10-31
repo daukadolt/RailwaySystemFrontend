@@ -2,6 +2,7 @@
     <div>
         <div class="bg">
             <VNavbar/>
+            <Popup/>
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
                 <VMainPageTableAndMap v-if="displayMainPageTableAndMap"/>
@@ -15,6 +16,7 @@
 import VNavbar from "./VNavbar.vue";
 import VFromToSearch from "./VFromToSearch.vue";
 import VMainPageTableAndMap from "./VMainPageTableAndMap.vue";
+import Popup from "./Popup.vue";
 import VFromToTable from "./VFromToTable.vue";
 import { repositoryFactory } from "../api/repositoryFactory";
 const citiesRepository = repositoryFactory.get("cities");
@@ -32,7 +34,8 @@ export default {
         VNavbar,
         VFromToSearch,
         VMainPageTableAndMap,
-        VFromToTable
+        VFromToTable,
+        Popup
     },
     mounted: function(){
         citiesRepository.get()
