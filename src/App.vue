@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <LogInAndSignUp/>
+    <VSeatReserve/>
   </div>
 </template>
 
 <script>
-import LogInAndSignUp from "./components/LogInAndSignUp.vue"
+import VSeatReserve from "./components/VSeatReserve.vue"
 
 export default {
   name: 'app',
   components: {
-    LogInAndSignUp
+    VSeatReserve
   }
 }
 </script>

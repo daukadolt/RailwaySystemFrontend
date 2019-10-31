@@ -10,7 +10,6 @@ body {
     font-family: Tahoma;
     font-size: 1rem;
     color: #222;
-    background-color: #092525;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -243,7 +242,7 @@ body {
     }
     .navigation-bar ul {
     padding: 0px;
-    margin-top: 66px;
+    margin-top: -49px;
     text-align: right;
     
     vertical-align:top;
@@ -263,4 +262,401 @@ body {
     line-height: 70px;
     padding: 5px 15px;
     opacity: 0.7;
+    }
+    html{
+        box-sizing: border-box;
+    }
+    *, *:after,*:before{
+        box-sizing: inherit;
+    }
+    body{
+      font-family: arial, sans-serif;
+      color: #282828;
+      font-size: 14px;
+      padding: 60px;
+    }
+    a, a.active{
+      color: inherit;
+        text-decoration: none;
+    }
+    $time-rims: 0.6s;
+    .content-train{
+       
+    }
+    .train{
+        position: absolute;
+        left: 50%;
+        margin-left: -185px;
+        bottom: 40px;
+        width: 370px;
+        height: 178px;
+        z-index: 0;
+        animation: train 8s linear infinite;
+        &:after{
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            height: 10px;
+            left: -5%;
+            border-radius: 50%;
+            width: 110%;
+            background: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+    }
+    .rims-wrap{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+    }
+    .rims{
+        height: 50px;
+        width: 50px;
+        border: 2px solid #232020;
+        position: absolute;
+        border-radius: 50%;
+        animation: rims $time-rims linear infinite;
+        &:after{
+            content: "";
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border: 3px solid #353334;
+            position: absolute;
+            border-radius: inherit;
+        }
+    }
+    .center-rims{
+        height: 16px;
+        width: 16px;
+        background: #353334;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -8px;
+        margin-top: -8px;
+        &:after{
+            @extend .rays;
+            transform: rotate(45deg);
+        }
+        &:before{
+            @extend .rays;
+            transform: rotate(60deg);
+        }
+    }
+    .rays{
+        height: 100%;
+        width: 2px;
+        background: #353334;
+        position: absolute;
+        left: 50%;
+        margin-left: -1px;
+    }
+    
+    
+    @for $i from 1 through 5 {
+      .rays:nth-child(#{$i}) { transform: rotate(45deg * $i)}
+    }
+    
+    .front-st {
+        left: 50px;
+    }
+    .front-nd {
+        left: 140px;
+    }
+    .back-st {
+        left: 215px;
+    }
+    .back-nd {
+        left: 303px;
+    }
+    .wrap-rims-guide {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      left: 178px;
+      top: 0;
+      animation: wrap_rims_guide $time-rims linear infinite;
+      z-index: 1;
+    }
+    .rims-guide{
+        position: absolute;
+        width: 258px;
+        height: 4px;
+        left: 50%;
+        top: 0;
+        margin-left: -129px;
+        background: #949699;
+        z-index: 1;
+        border-radius: 10px;
+        animation: rims_guide $time-rims linear infinite;
+    }
+    .point{
+        height: 6px;
+        width: 6px;
+        position: absolute;
+        top: -1px;
+        background: #000;
+        border: 2px solid #949699;
+        z-index: 44;
+        border-radius: 50%;
+    }
+    .point-front-st{
+        @extend .point;
+        left: 0;
+    }
+    .point-front-nd{
+        @extend .point;
+        left: 89px;
+    }
+    .point-back-st{
+        @extend .point;
+        left: 165px;
+    }
+    .point-back-nd{
+        @extend .point;
+        left: 251px;
+    }
+    @keyframes rims {
+        from { transform: rotate(0); }
+        to { transform: rotate(-360deg); }
+    }
+    
+    
+    @keyframes wrap_rims_guide {
+        from { transform: rotate(0); }
+        to { transform: rotate(-360deg); }
+    }
+    
+    @keyframes rims_guide {
+        from { transform: rotate(0); }
+        to { transform: rotate(360deg); }
+    }
+    @keyframes train {
+        0%{
+            transform: translateX(1100px);
+        }
+        100%{
+            transform: translateX(-1500px);
+        }
+    }
+    .back-train {
+        position: absolute;
+        left: 206px;
+        top: 78px;
+        height: 66px;
+        width: 153px;
+        background: #333;
+        z-index: 2;
+        &:before{
+            content: "";
+            top: -26px;
+            height: 26px;
+            background: #666;
+            width: 114%;
+            left: -7%;
+            z-index: 2;
+            display: block;
+            position: absolute;
+        }
+    }
+    
+    .front-train{
+        position: absolute;
+        left: 101px;
+        top: 21px;
+        height: 122px;
+        width: 90px;
+        background: #333;
+        z-index: 2;
+        &:before{
+            content: "";
+            top: -26px;
+            height: 26px;
+            background: #666;
+            width: 114%;
+            left: -7%;
+            z-index: 2;
+            display: block;
+            position: absolute;
+        }
+    }
+    
+    .train-window{
+        position: absolute;
+        left: 50%;
+        margin-left: -30px;
+        top: 16px;
+        width: 60px;
+        height: 60px;
+        border: 3px solid #010101;
+        overflow: hidden;
+        &:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 120px solid #FFF;
+            height: 1px;
+            width: 31px;
+            border-top-color: #8ed7f1;
+        }
+    }
+    .front-side{
+        position: absolute;
+        left: -52px;
+        bottom: 0;
+        width: 52px;
+        height: 70px;
+        background: #666;
+        border-radius: 3px 0 0 3px;
+        &:after{
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 34px;
+            top: -34px;
+            left: 50%;
+            background: #78797c;
+            margin-left: -11px;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            width: 32px;
+            height: 11px;
+            top: -44px;
+            left: 50%;
+            background: #343234;
+            margin-left: -16px;
+        }
+    }
+    .light{
+        position: absolute;
+        top: 4px;
+        left: -22px;
+        width: 22px;
+        height: 34px;
+        background: #aaa;
+        border-radius: 3px 0 0 3px;
+        &:after{
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: 4px;
+            width: 5px;
+            height: 95px;
+            background: #999;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            top: 85px;
+            right: 4px;
+            width: 44px;
+            height: 10px;
+            background: #aaa;
+        }
+    }
+    .bumper{
+        position: absolute;
+        top: 40px;
+        left: -48px;
+        height: 49px;
+        width: 39px;
+        overflow: hidden;
+        &:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 60px solid #999;
+            border-top-color: transparent;
+            border-left: 0;
+            border-right-width: 47px;
+        }
+    }
+    .mudguard-wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        z-index: 10;
+    }
+    .item-mudguard{
+        position: absolute;
+        top: -4px;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        border: 10px solid transparent;
+        border-top-color: #666;
+        border-right-color: #666;
+        transform: rotate(-45deg) translateX(-2px);
+        &:after{
+            right: -6px;
+            top: 31px;
+            @extend .detail-mudguard;
+        }
+        &:before{
+            left: -4px;
+            top: -4px;
+            @extend .detail-mudguard;
+        }
+    }
+    .detail-mudguard{
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 4px;
+        background: #666;
+        transform: rotate(45deg);
+    }
+    
+    .button{
+        display: block;
+        float: left;
+        padding: 20px 40px;
+        background: #fff;
+        border-radius: 3px;
+        border: 2px solid #0dba29;
+        overflow: hidden;
+        position: relative;
+        &:after{
+            transition: transform 0.3s ease;
+            content: "";
+            position: absolute;
+            height: 200px;
+            width: 400px;
+            transform: rotate(45deg) translateX(-540px) translateY(-100px);
+            background: #0dba29;
+            z-index: 1;
+        }
+        &:before{
+            transition: transform 0.5s ease;
+            content: attr(title);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            z-index: 2;
+            text-align: center;
+            padding: 20px 40px;
+            transform: translateY(200px);
+        }
+        &:hover{
+            text-decoration: none;
+            &:after{
+                transform: translateX(-200px) translateY(-100px);
+            }
+            &:before{
+                transform: translateY(0);
+            }
+        }
     }
