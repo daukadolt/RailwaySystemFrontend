@@ -2,10 +2,10 @@
     <div>
         <div class="bg">
             <VNavbar/>
-            <Popup/>
+            <Popup v-on:currentCitySelected="currentCitySelected"/>
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
-                <VMainPageTableAndMap v-if="displayMainPageTableAndMap"/>
+                <VMainPageTableAndMap v-if="displayMainPageTableAndMap" :current-city-routes-list="currentCityRoutesList"/>
                 <VFromToTable v-if="displayFromToTable"/>
             </keep-alive>
         </div>
@@ -27,7 +27,9 @@ export default {
         return {
             currentTableComponent: 'VFromToSearch',
             displayFromToTable: false,
-            displayMainPageTableAndMap: true
+            displayMainPageTableAndMap: true,
+            currentCityRoutesList: [],
+            fromToRoutesList: []
         }
     },
     components: {
@@ -38,10 +40,6 @@ export default {
         Popup
     },
     mounted: function(){
-        citiesRepository.get()
-        .then(response => {
-            this.$store.commit('setCities', response.data)
-        })
     },
     computed: {
         currentTableComputed: function() {
@@ -54,6 +52,16 @@ export default {
             this.displayMainPageTableAndMap = false;
             this.$store.commit('setRoutesList', routes);
         },
+        currentCitySelected(currentCity) {
+            citiesRepository.getCityArrivalDepartures(currentCity.localityId)
+                .then(response => {
+                    this.$store.commit("setCurrentCityRoutesList", response.data);
+                    this.$store.commit("currentCitySelected", currentCity);
+                    this.currentCityRoutesList = response.data;
+                    this.displayFromToTable = false;
+                    this.displayMainPageTableAndMap = true;
+                });
+        }
     }
 }
 </script>

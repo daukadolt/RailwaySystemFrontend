@@ -5,8 +5,6 @@
       id="modal-prevent-closing"
       ref="modal"
       title="Choose your city"
-      @show="resetModal"
-      @hidden="resetModal"
       @ok="handleOk"
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -25,33 +23,38 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
- 
+import { repositoryFactory } from "../api/repositoryFactory";
+const citiesRepository = repositoryFactory.get("cities");
   export default {
     components: { Multiselect },
     name: "Popup",
     data() {
       return {
         value: { name: 'Vue.js', language: 'JavaScript' },
-        options: [
-        { name: 'Vue.js', language: 'JavaScript' },
-        { name: 'Rails', language: 'Ruby' },
-        { name: 'Sinatra', language: 'Ruby' },
-        { name: 'Laravel', language: 'PHP' },
-        { name: 'Phoenix', language: 'Elixir' }
-      ]
+        options: []
       }
     },
     methods: {
-      nameWithLang ({ name, language }) {
-      return `${name} — [${language}]`
+      nameWithLang ({ name }) {
+      return `${name}`
     }, 
      showModal() {
         this.$refs['modal'].show()
       },
       hideModal() {
         this.$refs['modal'].hide()
+      },
+      handleOk() {
+        this.$emit("currentCitySelected", this.value);
       }
-    }, 
+    },
+    created() {
+      citiesRepository.get()
+            .then(response => {
+              this.options = response.data;
+              this.$store.commit('setCities', response.data);
+      });
+    },
      mounted() {
       this.showModal();
     }
