@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="bg">
-            <VNavbar/>
             <Popup v-on:currentCitySelected="currentCitySelected"/>
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
@@ -13,7 +12,6 @@
 </template>
 
 <script>
-import VNavbar from "../components/VNavbar.vue";
 import VFromToSearch from "../components/VFromToSearch.vue";
 import VMainPageTableAndMap from "../components/VMainPageTableAndMap.vue";
 import Popup from "../components/Popup.vue";
@@ -33,7 +31,6 @@ export default {
         }
     },
     components: {
-        VNavbar,
         VFromToSearch,
         VMainPageTableAndMap,
         VFromToTable,
