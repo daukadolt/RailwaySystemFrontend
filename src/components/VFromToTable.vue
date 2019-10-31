@@ -9,7 +9,7 @@
                 <th>To</th>
                 <th>Arrival Date</th>
             </tr>
-            <tr v-for="(routeInstance, i) in routesList" :key="i">
+            <tr v-for="(routeInstance, i) in fromToRoutesList" :key="i">
                 <td>{{routeInstance.routeId}}</td>
                 <td>{{routeInstance.routeName}}</td>
                 <td>{{routeInstance.from.name}}</td>
@@ -24,9 +24,9 @@
 <script>
     export default {
         name: "VFromToTable",
+        props: ["fromToRoutesList"],
         data() {
             return {
-                routesList: this.$store.state.routesList
             }
         }
     }

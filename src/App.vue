@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <VIndex/>
+    <VNavbar/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import VIndex from "./components/VIndex.vue"
+import VNavbar from "./components/VNavbar.vue";
 
 export default {
   name: 'app',
   components: {
-    VIndex
+    VNavbar
   }
 }
 </script>

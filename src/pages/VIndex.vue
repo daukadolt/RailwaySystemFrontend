@@ -1,23 +1,21 @@
 <template>
     <div>
         <div class="bg">
-            <VNavbar/>
             <Popup v-on:currentCitySelected="currentCitySelected"/>
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
                 <VMainPageTableAndMap v-if="displayMainPageTableAndMap" :current-city-routes-list="currentCityRoutesList"/>
-                <VFromToTable v-if="displayFromToTable"/>
+                <VFromToTable v-if="displayFromToTable" :from-to-routes-list="fromToRoutesList"/>
             </keep-alive>
         </div>
     </div>
 </template>
 
 <script>
-import VNavbar from "./VNavbar.vue";
-import VFromToSearch from "./VFromToSearch.vue";
-import VMainPageTableAndMap from "./VMainPageTableAndMap.vue";
-import Popup from "./Popup.vue";
-import VFromToTable from "./VFromToTable.vue";
+import VFromToSearch from "../components/VFromToSearch.vue";
+import VMainPageTableAndMap from "../components/VMainPageTableAndMap.vue";
+import Popup from "../components/Popup.vue";
+import VFromToTable from "../components/VFromToTable.vue";
 import { repositoryFactory } from "../api/repositoryFactory";
 const citiesRepository = repositoryFactory.get("cities");
 
@@ -33,7 +31,6 @@ export default {
         }
     },
     components: {
-        VNavbar,
         VFromToSearch,
         VMainPageTableAndMap,
         VFromToTable,
@@ -50,6 +47,7 @@ export default {
         routesReceived(routes) {
             this.displayFromToTable = true;
             this.displayMainPageTableAndMap = false;
+            this.fromToRoutesList = routes;
             this.$store.commit('setRoutesList', routes);
         },
         currentCitySelected(currentCity) {
