@@ -29,7 +29,7 @@ export default {
         VMainPageTableAndMap,
         Popup
     },
-    mounted: Popup, function(){},
+    mounted: function(){},
     computed: {
         currentTableComputed: function() {
             return this.currentTableComponent

@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <VIndex/>
+    <LogInAndSignUp/>
   </div>
 </template>
 
 <script>
-import VIndex from "./components/VIndex.vue"
+import LogInAndSignUp from "./components/LogInAndSignUp.vue"
 
 export default {
   name: 'app',
   components: {
-    VIndex
+    LogInAndSignUp
   }
 }
 </script>
 
 <style>
 body {
-  margin: 0;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
