@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import VIndex from "./components/VIndex.vue"
+import VIndex from "./pages/VIndex.vue"
 
 export default {
   name: 'app',

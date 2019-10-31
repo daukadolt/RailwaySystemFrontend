@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import VNavbar from "./VNavbar.vue";
-import VFromToSearch from "./VFromToSearch.vue";
-import VMainPageTableAndMap from "./VMainPageTableAndMap.vue";
-import Popup from "./Popup.vue";
-import VFromToTable from "./VFromToTable.vue";
+import VNavbar from "../components/VNavbar.vue";
+import VFromToSearch from "../components/VFromToSearch.vue";
+import VMainPageTableAndMap from "../components/VMainPageTableAndMap.vue";
+import Popup from "../components/Popup.vue";
+import VFromToTable from "../components/VFromToTable.vue";
 import { repositoryFactory } from "../api/repositoryFactory";
 const citiesRepository = repositoryFactory.get("cities");
 
