@@ -4,6 +4,7 @@
             <VNavbar/>
             <VFromToSearch/>
             <VMainPageTableAndMap/>
+            <Popup/>
         </div>
     </div>
 </template>
@@ -12,6 +13,8 @@
 import VNavbar from "./VNavbar.vue";
 import VFromToSearch from "./VFromToSearch.vue";
 import VMainPageTableAndMap from "./VMainPageTableAndMap.vue";
+import Popup from "./Popup.vue";
+
 
 export default {
     name: "VIndex",
@@ -23,9 +26,10 @@ export default {
     components: {
         VNavbar,
         VFromToSearch,
-        VMainPageTableAndMap
+        VMainPageTableAndMap,
+        Popup
     },
-    mounted: function(){},
+    mounted: Popup, function(){},
     computed: {
         currentTableComputed: function() {
             return this.currentTableComponent
