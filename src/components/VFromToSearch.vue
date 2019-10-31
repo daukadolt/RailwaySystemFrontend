@@ -3,31 +3,35 @@
     <div class="form-inline"> 
         <div class="text">Search the routes</div>
         <form @submit.prevent="searchFromTo">
-            <input type="text" placeholder="From City" v-model="fromCity" class="input-box">
-            <input type="text" placeholder="To City" v-model="toCity" class="input-box">
-            <button type="submit" class="btn" >Search</button>
+            <autocompleteCities :items="this.$store.state.cities" v-model="fromCity"/>
+            <autocompleteCities :items="this.$store.state.cities" v-model="toCity"/>
+            <input type="date" v-model="date" required>
+            <button type="submit" class="btn">Search</button>
         </form>
-        {{ info }}
     </div>
 </template>
 
 <script>
-import axios from "axios";
+import { repositoryFactory } from "../api/repositoryFactory";
+import autocompleteCities from "../customTags/autocompleteCities";
 
 export default {
     name: "VFromToSearch",
+    components: {
+        autocompleteCities
+    },
     data: function() {
         return {
             fromCity: '',
             toCity: '',
-            info: null
+            date: new Date(),
         }
     },
     methods: {
         searchFromTo: function() {
-            axios
-            .get(`http://localhost:8084/dynamictodolist_war_exploded/api/routes?from=${this.fromCity}&to=${this.toCity}&date_to='2019-11-18'`)
-            .then(response => this.info = response)
+            repositoryFactory.get("routes")
+            .getRoute(this.fromCity, this.toCity, this.date)
+            .then(response => this.$emit("routesReceived", response.data))
         }
     }
 }
