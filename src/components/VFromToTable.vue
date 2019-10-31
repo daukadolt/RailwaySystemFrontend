@@ -1,8 +1,5 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(routeInstance, i) in routesList" :key="i">{{routeInstance}}</li>
-        </ul>
         <table>
             <tr>
                 <th>#</th>
@@ -34,3 +31,23 @@
         }
     }
 </script>
+
+<style scoped>
+    table {
+        font-family: arial, sans-serif;
+        display: inline;
+    }
+
+    td, th {
+        margin-top:40px;
+        border: 1px solid #dddddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(odd) {
+        background-color:#fff ;
+    }
+    tr:nth-child(even) {
+        background-color:rgb(158, 155, 155) ;
+    }
+</style>
