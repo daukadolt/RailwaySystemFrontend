@@ -6,7 +6,7 @@
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
                 <VMainPageTableAndMap v-if="displayMainPageTableAndMap" :current-city-routes-list="currentCityRoutesList"/>
-                <VFromToTable v-if="displayFromToTable"/>
+                <VFromToTable v-if="displayFromToTable" :from-to-routes-list="fromToRoutesList"/>
             </keep-alive>
         </div>
     </div>
@@ -50,6 +50,7 @@ export default {
         routesReceived(routes) {
             this.displayFromToTable = true;
             this.displayMainPageTableAndMap = false;
+            this.fromToRoutesList = routes;
             this.$store.commit('setRoutesList', routes);
         },
         currentCitySelected(currentCity) {
