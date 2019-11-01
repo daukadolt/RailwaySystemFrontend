@@ -64,5 +64,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "../assets/SeatReserve.scss";
 </style>
