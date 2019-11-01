@@ -1,14 +1,14 @@
 <template>
  <div class="bg" v-bind:style="{ 'background-image': 'url(' + image + ')' }">
   <div id="app">
-   
-    <LogInAndSignUp/>
-    </div>
+    <VNavbar/>
+    <router-view/>
+  </div>
   </div>
 </template>
 
 <script>
-import LogInAndSignUp from "./components/LogInAndSignUp.vue"
+import VNavbar from "./components/VNavbar.vue";
 
 export default {
   name: 'app',
@@ -18,7 +18,7 @@ export default {
       }
     },
   components: {
-    LogInAndSignUp
+    VNavbar
   }
 }
 </script>

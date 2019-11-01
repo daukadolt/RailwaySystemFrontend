@@ -209,5 +209,5 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import "./SeatReserve.scss";
+  @import "../assets/SeatReserve";
 </style>

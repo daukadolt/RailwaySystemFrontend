@@ -5,11 +5,9 @@
         <div id="navigation-container">
         <img src="../assets/PicsArt_10-05-10.27.58.jpg" width="70" height="70">
         <ul>
-            <li><a href="index.html">Main</a></li>
-            <li><a href="LogSign.html">Log In</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Get in Touch</a></li>
-            <button class="btn"><i class="fa fa-home"></i>User name</button>
+            <li><router-link to="/">Home</router-link></li>
+            <li v-if="!this.$store.getters.isAuthenticated"><router-link to="/login">Login</router-link></li>
+            <li v-else><router-link to="/account"><button class="btn"><i class="fa fa-home"></i>{{this.$store.getters.getFullName}}</button></router-link></li>
         </ul>
     </div>
     </div>
