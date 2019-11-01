@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg">
+        <div class="bg" >
             <VNavbar/>
             <VFromToSearch/>
             <VMainPageTableAndMap/>
@@ -38,5 +38,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+  @import "./SeatReserve.scss";
 </style>

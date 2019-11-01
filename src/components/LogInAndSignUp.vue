@@ -1,74 +1,7 @@
 <template>
 <div>
-    <div class="navigation-bar" >
-        <div id="navigation-container">
-        <img src="../assets/PicsArt_10-05-10.27.58.jpg" width="70" height="70">
-        <ul>
-            <li><a href="index.html">Main</a></li>
-            <li><a href="LogSign.html">Log In</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Get in Touch</a></li>
-        </ul>
-    </div>
-    </div>
-    
-<div class="content-train">
-    <div class="train">
-        <div class="front-train">
-            <div class="train-window"></div>
-            <div class="front-side">
-                <div class="light"></div>
-                <div class="bumper"></div>
-            </div>
-        </div>
-        <div class="back-train"></div>
-        <div class="rims-wrap">
-            <div class="mudguard-wrap">
-                <div class="item-mudguard front-st"></div>
-                <div class="item-mudguard front-nd"></div>
-                <div class="item-mudguard back-st"></div>
-                <div class="item-mudguard back-nd"></div>
-            </div>
-            <div class="wrap-rims-guide">
-                <div class="rims-guide">
-                    <div class="point-front-st"></div>
-                    <div class="point-front-nd"></div>
-                    <div class="point-back-st"></div>
-                    <div class="point-back-nd"></div>
-                </div>
-            </div>
-            <div class="rims front-st">
-                <div class="center-rims"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-            </div>
-            <div class="rims front-nd">
-                <div class="center-rims"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-            </div>
-            <div class="rims back-st">
-                <div class="center-rims"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-            </div>
-            <div class="rims back-nd">
-                <div class="center-rims"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-                <div class="rays"></div>
-            </div>
-        </div>
-    </div>
-</div>
-  <div id="app">
+    <VMovingTrain/>
+  <div id="app">"
 
   <article>
     <div class="container" :class="{'sign-up-active' : signUp}">
@@ -109,6 +42,7 @@
 </div>
 </template>
 <script>
+   import VMovingTrain from "./VMovingTrain.vue";
  export default {
     name: "LogInAndSignUp",
     data() {
@@ -117,6 +51,9 @@
       }
     },
     methods: {
+    },
+    components: {
+      VMovingTrain
     }
   }
 </script>
