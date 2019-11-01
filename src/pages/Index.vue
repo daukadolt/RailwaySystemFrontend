@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bg">
-            <Popup v-on:currentCitySelected="currentCitySelected"/>
+            <Popup v-on:currentCitySelected="currentCitySelected" v-if="!this.$store.getters.currentCitySelected"/>
             <VFromToSearch v-on:routesReceived="routesReceived"/>
             <keep-alive>
                 <VMainPageTableAndMap v-if="displayMainPageTableAndMap" :current-city-routes-list="currentCityRoutesList"/>
@@ -54,7 +54,7 @@ export default {
             citiesRepository.getCityArrivalDepartures(currentCity.localityId)
                 .then(response => {
                     this.$store.commit("setCurrentCityRoutesList", response.data);
-                    this.$store.commit("currentCitySelected", currentCity);
+                    this.$store.commit("setCurrentCity", currentCity);
                     this.currentCityRoutesList = response.data;
                     this.displayFromToTable = false;
                     this.displayMainPageTableAndMap = true;
@@ -64,5 +64,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "../assets/SeatReserve.scss";
 </style>

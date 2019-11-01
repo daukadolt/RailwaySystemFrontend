@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex);
-export default new Vuex.Store({
+
+const store = new Vuex.Store({
     state: {
         cities: [],
-        currentCity: "",
+        currentCity: null,
         currentCityRoutesList: [],
-        routesList: []
+        routesList: [],
+        passenger: null
     },
     mutations: {
         setCities(state, cities) {
@@ -20,6 +22,23 @@ export default new Vuex.Store({
         },
         setRoutesList(state, routesList) {
             state.routesList = routesList;
+        },
+        setPassenger(state, passenger) {
+            state.passenger = passenger;
+        }
+    },
+    getters: {
+        currentCitySelected(store) {
+            return store.currentCity !== null;
+        },
+        isAuthenticated(store) {
+            return store.passenger !== null;
+        },
+        getFullName(store) {
+            return store.passenger !== null ? `${store.passenger.firstName} ${store.passenger.lastName}` : '';
         }
     }
-})
+});
+
+
+export default store;

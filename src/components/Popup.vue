@@ -1,6 +1,5 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-prevent-closing>Open Modal</b-button>
     <b-modal
       id="modal-prevent-closing"
       ref="modal"
