@@ -30,6 +30,9 @@ const store = new Vuex.Store({
     getters: {
         isAuthenticated(store) {
             return store.passenger !== null;
+        },
+        getFullName(store) {
+            return store.passenger !== null ? `${store.passenger.firstName} ${store.passenger.lastName}` : '';
         }
     }
 });

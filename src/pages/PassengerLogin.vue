@@ -27,7 +27,7 @@ export default {
         data() {
             return {
                 passengerLoginData: {
-                    email: "Daulet",
+                    email: "daulet@google.com",
                     password: "something"
                 },
                 passengerSignUpData: {
