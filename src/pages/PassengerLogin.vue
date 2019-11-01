@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p v-if="message">Message: {{message}}</p>
         <form @submit.prevent="loginUser">
             <p>Login</p>
             <input type="text" v-model="passengerLoginData.email" placeholder="email" required>
@@ -18,28 +19,42 @@
 </template>
 
 <script>
-    export default {
+import { repositoryFactory } from "../api/repositoryFactory";
+const passengersRepository = repositoryFactory.get("passengers");
+
+export default {
         name: "PassengerLogin",
         data() {
             return {
                 passengerLoginData: {
-                    email: null,
-                    password: null
+                    email: "Daulet",
+                    password: "something"
                 },
                 passengerSignUpData: {
-                    email: null,
-                    firstName: null,
-                    lastName: null,
-                    password: null
-                }
+                    email: 'daulet@google.com',
+                    firstName: "Daulet",
+                    lastName: "Amirkhanov",
+                    password: "something"
+                },
+                message: this.$route.query.message
             }
         },
         methods: {
             loginUser() {
-
+                passengersRepository.login(this.passengerLoginData)
+                    .then(response => {
+                        this.authenticateUser(response.data);
+                    });
             },
             signUpUser() {
-
+                passengersRepository.sign_up(this.passengerSignUpData)
+                    .then(response => {
+                        this.authenticateUser(response.data);
+                    });
+            },
+            authenticateUser(passengerData) {
+                this.$store.commit('setPassenger', passengerData);
+                this.$router.push("account");
             }
         }
     }

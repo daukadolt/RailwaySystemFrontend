@@ -1,9 +1,11 @@
 import citiesRepository from "./citiesRepository";
 import routesRepository from "./routesRepository";
+import passengersRepository from "./passengersRepository";
 
 const repositories = {
     cities: citiesRepository,
-    routes: routesRepository
+    routes: routesRepository,
+    passengers: passengersRepository
 };
 
 export const repositoryFactory = {
