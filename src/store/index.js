@@ -5,7 +5,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         cities: [],
-        currentCity: "",
+        currentCity: null,
         currentCityRoutesList: [],
         routesList: [],
         passenger: null
@@ -28,6 +28,9 @@ const store = new Vuex.Store({
         }
     },
     getters: {
+        currentCitySelected(store) {
+            return store.currentCity !== null;
+        },
         isAuthenticated(store) {
             return store.passenger !== null;
         },

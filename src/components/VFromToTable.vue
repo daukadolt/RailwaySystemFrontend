@@ -8,6 +8,7 @@
                 <th>Departure Date</th>
                 <th>To</th>
                 <th>Arrival Date</th>
+                <th v-if="this.$store.getters.isAuthenticated">Order</th>
             </tr>
             <tr v-for="(routeInstance, i) in fromToRoutesList" :key="i">
                 <td>{{routeInstance.routeId}}</td>
@@ -16,6 +17,7 @@
                 <td>{{routeInstance.depDate}}</td>
                 <td>{{routeInstance.to.name}}</td>
                 <td>{{routeInstance.arrDate}}</td>
+                <td v-if="userAuthenticated"><button>Order</button></td>
             </tr>
         </table>
     </div>
@@ -27,6 +29,7 @@
         props: ["fromToRoutesList"],
         data() {
             return {
+                userAuthenticated: this.$store.getters.isAuthenticated
             }
         }
     }
