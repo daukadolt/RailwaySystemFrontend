@@ -2,13 +2,13 @@
  <div class="bg" v-bind:style="{ 'background-image': 'url(' + image + ')' }">
   <div id="app">
    
-    <VProfilePassanger/>
+    <LogInAndSignUp/>
     </div>
   </div>
 </template>
 
 <script>
-import VProfilePassanger from "./components/VProfilePassanger.vue"
+import LogInAndSignUp from "./components/LogInAndSignUp.vue"
 
 export default {
   name: 'app',
@@ -18,7 +18,7 @@ export default {
       }
     },
   components: {
-    VProfilePassanger
+    LogInAndSignUp
   }
 }
 </script>
