@@ -196,7 +196,7 @@
 </div>
 </template>
 <script>
-import VMovingTrain from "./VMovingTrain.vue";
+import VMovingTrain from "../components/VMovingTrain.vue";
 export default {
     name: "VSeatReserve",
     data: function() {
@@ -208,6 +208,6 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import "../assets/SeatReserve";
 </style>

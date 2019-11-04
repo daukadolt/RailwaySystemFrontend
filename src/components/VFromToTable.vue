@@ -17,7 +17,7 @@
                 <td>{{routeInstance.depDate}}</td>
                 <td>{{routeInstance.to.name}}</td>
                 <td>{{routeInstance.arrDate}}</td>
-                <td v-if="userAuthenticated"><button>Order</button></td>
+                <td v-if="userAuthenticated"><router-link :to="{path: 'booking', query: {routeId: routeInstance.routeId}}"><button>Order</button></router-link></td>
             </tr>
         </table>
     </div>

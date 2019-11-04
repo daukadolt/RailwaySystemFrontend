@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Index from "../pages/Index.vue";
 import PassengerLogin from "../pages/PassengerLogin.vue";
 import PassengerAccount from "../pages/PassengerAccount.vue";
+import BookingPage from "../pages/BookingPage.vue";
 /* Pages */
 
 /* Middleware */
@@ -23,7 +24,8 @@ const router = new VueRouter({
     routes: [
         {path: '/', component: Index, meta: {middleware: log}},
         {path: '/login', component: PassengerLogin},
-        {path: '/account', component: PassengerAccount, meta: {middleware: auth}}
+        {path: '/account', component: PassengerAccount, meta: {middleware: auth}},
+        {path: '/booking', component: BookingPage}
 
     ]
 });

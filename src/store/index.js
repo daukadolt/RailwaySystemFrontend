@@ -36,6 +36,9 @@ const store = new Vuex.Store({
         },
         getFullName(store) {
             return store.passenger !== null ? `${store.passenger.firstName} ${store.passenger.lastName}` : '';
+        },
+        getEmail(store) {
+            return store.passenger !== null ? store.passenger.email : '';
         }
     }
 });

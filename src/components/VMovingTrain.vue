@@ -67,6 +67,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "./MovingTrain.scss";
+  @import "MovingTrain";
 </style>
 
