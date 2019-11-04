@@ -1,7 +1,6 @@
 <template>
 <div >
     
-   <VNavbar/>
    <div class="main-content">
       <div class="ticket">
         <div class="ticket__main">
@@ -55,7 +54,6 @@
     </div>
 </template>
 <script>
-import VNavbar from "./VNavbar.vue";
  export default {
     name: "VTicketOrder",
     data() {
@@ -66,7 +64,6 @@ import VNavbar from "./VNavbar.vue";
     methods: {
     },
     components: {
-      VNavbar
     }
   }
 </script>
