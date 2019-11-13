@@ -5,13 +5,14 @@ import VueRouter from 'vue-router'
 import Index from "../pages/Index.vue";
 import PassengerLogin from "../pages/PassengerLogin.vue";
 import PassengerAccount from "../pages/PassengerAccount.vue";
+import ManagerAccount from "../pages/ManagerAccount.vue";
 import BookingPage from "../pages/BookingPage.vue";
 import EmployeeLogin from "../pages/EmployeeLogin.vue";
 /* Pages */
 
 /* Middleware */
 import log from "../middleware/log"
-import auth from "../middleware/auth"
+//simport auth from "../middleware/auth"
 /* Middleware */
 
 /* Store */
@@ -25,9 +26,12 @@ const router = new VueRouter({
     routes: [
         {path: '/', component: Index, meta: {middleware: log}},
         {path: '/login', component: PassengerLogin},
-        {path: '/account', component: PassengerAccount, meta: {middleware: auth}},
+        {path: '/account', component: PassengerAccount}, //meta: {middleware: auth}},
+        {path: '/manager_account', component: ManagerAccount},
         {path: '/booking', component: BookingPage},
-        {path: '/emp_login', component: EmployeeLogin}
+        {path: '/emp_login', component: EmployeeLogin},
+
+
 
     ]
 });
