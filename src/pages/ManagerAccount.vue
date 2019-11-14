@@ -80,47 +80,64 @@
                         </table>
                     </div>
                 </div>
+
+
+
                 <div v-if="activetab ==='5'" class="tabcontent">
-                    <div class="tableFrom">
-                        <table class="travel" id='createRoute'>
-                            <tr>
-                                <th>Route Name</th>
-                                <th><input placeholder="from-to" v-model="routeName"></th>
+                    {{ newRouteData }}
+                    <form @submit.prevent="SendData">
+                        <div class="tableFrom">
+                            <table class="travel" id='createRoute'>
+                                <tr>
+                                    <td>Route Name</td>
+                                    <td><input placeholder="from-to" v-model="newRouteData.routeName" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Number of carriages</td>
+                                    <td><input placeholder="carriage number" v-model="newRouteData.carNum"></td>
+                                </tr>
+                                <tr>
+                                    <td>Number of seats</td>
+                                    <td><input placeholder="seat number" v-model="newRouteData.seatNum"></td>
+                                </tr>
+                                <tr v-for="(startDate, index) in newRouteData.dates" :key="index">
+                                    <td>dates when will take place</td>
+                                    <td><input type="date" v-model="newRouteData.dates[index]"> <button @click="addNewStartDate">Add new Date</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>start time</td>
+                                    <td><input type="appt-time" v-model="newRouteData.startTime"></td>
+                                </tr>
+
+                                <span v-for="(station, index) in newRouteData.stations" :key="index">
+                                <tr>
+                                <td rowspan="2">Station #{{index+1}}</td>
+                                <td><input placeholder="station id" v-model="newRouteData.stations[index].stationId"></td>
+
                             </tr>
                             <tr>
-                                <th>Carriage Number</th>
-                                <th><input placeholder="carriage number" v-model="carNum"></th>
+                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" >   <button @click="addNewStation">Add new station</button>
+                                </td>
                             </tr>
-                            <tr>
-                                <th>Seat Number</th>
-                                <th><input placeholder="seat number" v-model="seatNum"></th>
-                            </tr>
-                            <tr>
-                                <th>dates when will take place</th>
-                                <th><input type="date" v-model="dates"></th>
-                            </tr>
-                            <tr>
-                                <th>start time</th>
-                                <th><input type="appt-time" v-model="startTime"></th>
-                            </tr>
-                            <tr>
-                                <th rowspan="2">Stations</th>
-                                <th><input placeholder="station id" v-model="stationsId"></th>
-                                
-                            </tr>
-                            <tr>
-                                <th style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="duration" ></th>
-                            </tr>
-                            <tr style="background-color: white">
-                                <th>last station</th>
-                                <th><input placeholder="last station id" v-model="lastStation"></th>
-                            </tr>
-                            
-                        </table>
-                        
-                    </div>
-                    <button type="submit" @click="SendData()" name="submit" class="btn-default">Submit</button>
+                            </span>
+
+
+                                <tr style="background-color: white">
+                                    <td>last station</td>
+                                    <td><input placeholder="last station id" v-model="newRouteData.lastStation"></td>
+                                </tr>
+
+                            </table>
+                            <button type="submit" name="submit" class="btn-default">Submit</button>
+                        </div>
+                    </form>
+
+
+
+
                 </div>
+
             </div>
 
         </div>
@@ -129,21 +146,24 @@
 
 <script>
 import store from '../store';
+import { repositoryFactory } from "../api/repositoryFactory"
+const employeesRepository = repositoryFactory.get("employees");
 
     export default {
-        name: "PassengerAccount",
+        name: "ManagerAccount",
         data() {
             return {
                 passengerData: null,
                 activetab: '1',
-                routeName:'',
-                carNum:null,
-                seatNum:null,
-                dates: new Date(),
-                startTime:'',
-                stationsId:null,
-                duration:'',
-                lastStation:null
+                newRouteData: {
+                    routeName:'',
+                    carNum:null,
+                    seatNum:null,
+                    dates: [null],
+                    startTime:'',
+                    stations:[{stationId: null, duration: null}],
+                    lastStation:null,
+                }
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -155,9 +175,25 @@ import store from '../store';
             setPassenger(passengerData) {
                 this.passengerData = passengerData;
             },
-            SendData: function(){
-                
-
+            addNewStartDate() {
+                this.newRouteData.dates.push(null);
+            },
+            addNewStation() {
+                this.newRouteData.stations.push({stationId: null, duration: null});
+            },
+            SendData() {
+                employeesRepository.createRoute(this.newRouteData)
+                    .then(() => {
+                        this.newRouteData = {
+                            routeName:'',
+                            carNum:null,
+                            seatNum:null,
+                            dates: [null],
+                            startTime:'',
+                            stations:[{stationId: null, duration: null}],
+                            lastStation:null,
+                        }
+                    });
             }
         }
     }
