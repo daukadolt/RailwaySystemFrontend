@@ -3,7 +3,7 @@
     <VMovingTrain/>
     <div class="trainseats">
   <div class="exit front train-body">
-    <div>Toilet</div><div></div><div></div>
+    <div>Toilet</div>
   </div>
  
   <ol class="wagon train-body">
