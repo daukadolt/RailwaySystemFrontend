@@ -15,7 +15,7 @@
     </table>
     </div>
     
-    <button type="submit">Change Schedule</button>
+    <button @click="updateSchedule">Change Schedule</button>
     <br><br>
     <div>
         <table class="travel">
@@ -32,57 +32,43 @@
 </template>
 
 <script>
-//import { employeesFactory } from "../api/employeesFactory"
-//import routesRepository from '../api/routesRepository';
-//const employeesRepository = repositoryFactory.get("employees");
+import { repositoryFactory } from "../api/repositoryFactory"
+const employeesRepository = repositoryFactory.get("employees");
     export default {
         name: "EmployeeInformation",
         created() {
-            /*employeesRepository.getEmployeeSchedule(this.$route.query.e_id)
-            .then((response)=> {
-                response.data
-                this.emloyee = response.data
-            })*/
+            employeesRepository.getEmployeeSchedule(this.$route.query.employeeId)
+                .then( response => {
+                    this.employeeWorkDayList = response.data;
+                } );
         },
         data() {
             return {
                 employee:{
                     salary:100
                 },
-                employeeWorkDayList: [{
-                    week_day:1,
-                    start_hour:2,
-                    end_hour:3
-                },{
-                    week_day:2,
-                    start_hour:4,
-                    end_hour:5
-                },{
-                    week_day:3,
-                    start_hour:6,
-                    end_hour:7
-                },{
-                    week_day:4,
-                    start_hour:8,
-                    end_hour:9
-                },{
-                    week_day:5,
-                    start_hour:10,
-                    end_hour:11
-                },{
-                    week_day:6,
-                    start_hour:11,
-                    end_hour:12
-                },{
-                    week_day:7,
-                    start_hour:13,
-                    end_hour:14
-                }]
+                employeeWorkDayList: []
             }
         },
         computed: {
         },
         methods: {
+            updateSchedule() {
+                let updatedSchedule = [];
+                this.employeeWorkDayList.forEach(dayRecord => {
+                    let dayRecordWithoutId = {start_hour: dayRecord.start_hour, end_hour: dayRecord.end_hour, week_day: dayRecord.week_day};
+                    updatedSchedule.push(dayRecordWithoutId);
+                });
+                employeesRepository.updateEmployeeSchedule(this.$route.query.employeeId, this.employeeWorkDayList)
+                    .then( response => {
+                        console.log("success");
+                        console.log(response);
+                    } )
+                    .catch(err => {
+                        console.log("error");
+                        console.log(err);
+                    })
+            }
         }
     }
 </script>

@@ -28,7 +28,7 @@ export default {
 
     /* <--- </Tickets> ---> */
 
-    /* <Stations> */
+    /* <--- <Stations> ---> */
 
     getStations() {
         return repository.get(`${resource}/getStations`)
@@ -40,6 +40,25 @@ export default {
             }
 
         })
+    },
+    /* <--- </Stations> ---> */
+
+    /* <--- <ActuallyEmployees> ---> */
+
+    getEmployeeSchedule(employeeId) {
+        return repository.get(`${resource}/schedule`, {
+            params: {
+                e_id: employeeId
+            }
+        })
+    },
+
+    updateEmployeeSchedule(employeeId, weekSchedule) {
+        return repository.put(`${resource}/adjust/${employeeId}`, {
+                schedule: weekSchedule
+        })
     }
-    /* </Stations> */
+
+    /* <--- </ActuallyEmployees> ---> */
+
 }
