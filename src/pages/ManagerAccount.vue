@@ -17,7 +17,7 @@
                         <tr v-for="(station, i) in stationList" :key="i">
                         <td>             
                             <button>Station {{station.stationId}}</button>               
-                            <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"---><button>Edit</button><!---/router-link---></td>
+                            <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"--><!---/router-link---></td>
                         </tr>
                     </table>
                 </div>
