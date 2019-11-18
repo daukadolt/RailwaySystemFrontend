@@ -3,25 +3,21 @@
         <div id="tabs" class="container">
 
             <div class="tabs">
-                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Employees</a>
+                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Stations</a>
                 <a v-on:click="activetab='5'" v-bind:class="[ activetab === '5' ? 'active' : '' ]">Create Routes</a>
                 <a v-on:click="activetab='6'" v-bind:class="[ activetab === '6' ? 'active' : '' ]">Cancel Routes</a>
             </div>
 
             <div v-if="activetab ==='2'" class="tabcontent">
                 <div class="tableFrom">
-                    <table class="travel" id='employeeSchedule'>
+                    <table class="travel" id='Stations'>
                         <tr>
-                            <th>Employee</th>
-                            <th>email</th>
-                            <th>station</th>
+                            <th>Station ID</th>
                         </tr>
-                        <tr v-for="(employee, i) in employeeList" :key="i">
-                            <td>{{employee.employeeId}}</td>
-                            <td>{{employee.employeeEmail}}</td>
-                            <td>{{employee.employeeStation}} 
-                                <button @click="AdjustHours(employeeId)">Adjust working hours</button>
-                            </td>
+                        <tr v-for="(station, i) in stationList" :key="i">
+                        <td>             
+                            <button>Station {{station.stationId}}</button>               
+                            <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"---><button>Edit</button><!---/router-link---></td>
                         </tr>
                     </table>
                 </div>
@@ -64,14 +60,13 @@
                                <tr>
                                     <td rowspan="2">Station #{{index+1}}</td>
                                     <td><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
-
-                                 </tr>
-                                <tr>
-                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <button @click="addNewStation">Add new station</button>
-                                </td>
                                 </tr>
-                                </span>
-                            </table>
+                            <tr>
+                            <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <button @click="addNewStation">Add new station</button>
+                            </td>
+                            </tr>
+                            </span>
+                        </table>
                            
                         </div>
                          <button type="submit" name="submit" class="btn btn-default">Submit</button>
@@ -124,16 +119,23 @@ const employeesRepository = repositoryFactory.get("employees");
                     routeId:null,
                     startDate:null,
                 },
-                employeeList:
-                        [{employeeId:1,
+                employeeList:[{employeeId:1,
                         employeeName:"FirstEmpl",
                         employeeStation:2},
                         { employeeId:2,
                         employeeName:"SecondEmpl",
                         employeeStation:4}]
-                }
-            }
-        ,
+                ,
+                stationList:[
+                    {stationId:1},
+                    {stationId:2},
+                    {stationId:3},
+                    {stationId:4},
+                    {stationId:5},
+                    {stationId:6},
+                    {stationId:7}
+                ]
+            }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },

@@ -9,6 +9,7 @@ import ManagerAccount from "../pages/ManagerAccount.vue";
 import AgentAccount from "../pages/AgentAccount.vue";
 import BookingPage from "../pages/BookingPage.vue";
 import EmployeeLogin from "../pages/EmployeeLogin.vue";
+import StationEmployees from "../pages/StationEmployees.vue";
 /* Pages */
 
 /* Middleware */
@@ -31,7 +32,8 @@ const router = new VueRouter({
         {path: '/manager_account', component: ManagerAccount},
         {path: '/booking', component: BookingPage},
         {path: '/emp_login', component: EmployeeLogin},
-        {path: '/agent_account', component: AgentAccount}
+        {path: '/agent_account', component: AgentAccount},
+        {path: '/station_employees', component: StationEmployees},
     ]
 });
 
