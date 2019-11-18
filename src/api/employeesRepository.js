@@ -8,5 +8,15 @@ export default {
     },
     createRoute(routeData) {
         return repository.post(`${resource}/newRoute`, routeData)
+    },
+    cancelRoute(cancelRouteData){
+        return repository.post(`${resource}/cancelRoute`,cancelRouteData)
+    },
+    createTicket(ticketData){
+        console.log(ticketData)
+        return repository.post(`${resource}/createTicket`, ticketData)
+    },
+    cancelTicket(ticketData){
+        return repository.post(`${resource}/deleteTicket`, ticketData)
     }
 }

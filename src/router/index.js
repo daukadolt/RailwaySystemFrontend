@@ -6,6 +6,7 @@ import Index from "../pages/Index.vue";
 import PassengerLogin from "../pages/PassengerLogin.vue";
 import PassengerAccount from "../pages/PassengerAccount.vue";
 import ManagerAccount from "../pages/ManagerAccount.vue";
+import AgentAccount from "../pages/AgentAccount.vue";
 import BookingPage from "../pages/BookingPage.vue";
 import EmployeeLogin from "../pages/EmployeeLogin.vue";
 /* Pages */
@@ -30,9 +31,7 @@ const router = new VueRouter({
         {path: '/manager_account', component: ManagerAccount},
         {path: '/booking', component: BookingPage},
         {path: '/emp_login', component: EmployeeLogin},
-
-
-
+        {path: '/agent_account', component: AgentAccount}
     ]
 });
 
@@ -43,7 +42,6 @@ function nextFactory(context, middleware, index) {
 
     return(...parameters) => {
         context.next(...parameters);
-
         const nextMiddleware = nextFactory(context, middleware, index + 1);
         subsequentMiddleware({ ...context, next: nextMiddleware });
     }
@@ -54,7 +52,6 @@ router.beforeEach((to, from, next) => {
         const middleware = Array.isArray(to.meta.middleware)
             ? to.meta.middleware
             : [to.meta.middleware];
-
         const context = {
             from,
             next,
@@ -63,13 +60,8 @@ router.beforeEach((to, from, next) => {
             store
         };
         const nextMiddleware = nextFactory(context, middleware, 1);
-
         return middleware[0]({ ...context, next: nextMiddleware });
     }
-
     return next();
 });
-
-
-
 export default router;

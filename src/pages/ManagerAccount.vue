@@ -3,145 +3,101 @@
         <div id="tabs" class="container">
 
             <div class="tabs">
-                <a v-on:click="activetab='1'" v-bind:class="[ activetab === '1' ? 'active' : '' ]">Stations schedule</a>
-                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Employees schedule</a>
-                <a v-on:click="activetab='3'" v-bind:class="[ activetab === '3' ? 'active' : '' ]">Payroll</a>
-                <a v-on:click="activetab='4'" v-bind:class="[ activetab === '4' ? 'active' : '' ]">Manage hours</a>
+                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Employees</a>
                 <a v-on:click="activetab='5'" v-bind:class="[ activetab === '5' ? 'active' : '' ]">Create Routes</a>
                 <a v-on:click="activetab='6'" v-bind:class="[ activetab === '6' ? 'active' : '' ]">Cancel Routes</a>
             </div>
 
-            <div class="content">
-                <div v-if="activetab ==='1'" class="tabcontent">
-                    <div class="tableFrom">
-                        <table class="travel" id='stationsSchedule'>
-                            <tr>
-                                <th>STATIONS SCHEDULE</th>
-                                <th>Contact</th>
-                                <th>Country</th>
-                            </tr>
-                            <tr>
-                                <td>Alfreds Futterkiste</td>
-                                <td>Maria Anders</td>
-                                <td>Germany</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr>
-                            <tr>
-                                <td>Island Trading</td>
-                                <td>Helen Bennett</td>
-                                <td>UK</td>
-                            </tr>
-                            <tr>
-                                <td>Laughing Bacchus Winecellars</td>
-                                <td>Yoshi Tannamuri</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Magazzini Alimentari Riuniti</td>
-                                <td>Giovanni Rovelli</td>
-                                <td>Italy</td>
-                            </tr>
-                        </table>
-                    </div>
+            <div v-if="activetab ==='2'" class="tabcontent">
+                <div class="tableFrom">
+                    <table class="travel" id='employeeSchedule'>
+                        <tr>
+                            <th>Employee</th>
+                            <th>email</th>
+                            <th>station</th>
+                        </tr>
+                        <tr v-for="(employee, i) in employeeList" :key="i">
+                            <td>{{employee.employeeId}}</td>
+                            <td>{{employee.employeeEmail}}</td>
+                            <td>{{employee.employeeStation}} 
+                                <button @click="AdjustHours(employeeId)">Adjust working hours</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div v-if="activetab ==='2'" class="tabcontent">
+            </div>
+                
+
+
+
+            <div v-if="activetab ==='5'" class="tabcontent">
+                {{ newRouteData }}
+                <form @submit.prevent="SendData">
                     <div class="tableFrom">
-                        <table class="travel" id='employeeSchedule'>
+                        <table class="travel" id='createRoute'>
                             <tr>
-                                <th>Employee SCHEDULE</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div v-if="activetab ==='3'" class="tabcontent">
-                    <div class="tableFrom">
-                        <table class="travel" id='employeeSchedule'>
-                            <tr>
-                                <th>PAYROLL</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div v-if="activetab ==='4'" class="tabcontent">
-                    <div class="tableFrom">
-                        <table class="travel" id='employeeSchedule'>
-                            <tr>
-                                <th>Manage Hours</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-
-
-                <div v-if="activetab ==='5'" class="tabcontent">
-                    {{ newRouteData }}
-                    <form @submit.prevent="SendData">
-                        <div class="tableFrom">
-                            <table class="travel" id='createRoute'>
-                                <tr>
-                                    <td>Route Name</td>
-                                    <td><input placeholder="from-to" v-model="newRouteData.routeName" required></td>
-                                </tr>
-                                <tr>
-                                    <td>Number of carriages</td>
-                                    <td><input placeholder="carriage number" v-model="newRouteData.carNum"></td>
-                                </tr>
-                                <tr>
-                                    <td>Number of seats</td>
-                                    <td><input placeholder="seat number" v-model="newRouteData.seatNum"></td>
-                                </tr>
-                                <tr v-for="(startDate, index) in newRouteData.dates" :key="index">
-                                    <td>dates when will take place</td>
-                                    <td><input type="date" v-model="newRouteData.dates[index]"> <button @click="addNewStartDate">Add new Date</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>start time</td>
-                                    <td><input type="appt-time" v-model="newRouteData.startTime"></td>
-                                </tr>
-
-                                <span v-for="(station, index) in newRouteData.stations" :key="index">
-                                <tr>
-                                <td rowspan="2">Station #{{index+1}}</td>
-                                <td><input placeholder="station id" v-model="newRouteData.stations[index].stationId"></td>
-
+                                <td>Route Name</td>
+                                <td><input placeholder="from-to" v-model="newRouteData.routeName" required></td>
                             </tr>
                             <tr>
-                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" >   <button @click="addNewStation">Add new station</button>
+                                <td>Number of carriages</td>
+                                <td><input placeholder="carriage number" v-model="newRouteData.carNum" required></td>
+                            </tr>
+                            <tr>
+                                <td>Number of seats</td>
+                                <td><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
+                            </tr>
+                            <tr v-for="(startDate, index) in newRouteData.dates" :key="index">
+                                <td>dates when will take place</td>
+                                <td><input type="date" v-model="newRouteData.dates[index]" required> <button @click="addNewStartDate">Add new Date</button>
                                 </td>
                             </tr>
-                            </span>
+                            <tr>
+                                <td>start time</td>
+                                <td><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
+                            </tr>
+                            <tr style="background-color: white">
+                                <td>last station</td>
+                                <td><input placeholder="last station id" v-model="newRouteData.lastStation" required></td>
+                            </tr>
+                            <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
+                               <tr>
+                                    <td rowspan="2">Station #{{index+1}}</td>
+                                    <td><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
 
-
-                                <tr style="background-color: white">
-                                    <td>last station</td>
-                                    <td><input placeholder="last station id" v-model="newRouteData.lastStation"></td>
+                                 </tr>
+                                <tr>
+                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <button @click="addNewStation">Add new station</button>
+                                </td>
                                 </tr>
-
+                                </span>
                             </table>
-                            <button type="submit" name="submit" class="btn-default">Submit</button>
+                           
+                        </div>
+                         <button type="submit" name="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+                <div v-if="activetab ==='6'" class="tabcontent">
+                    {{cancelRouteData}}
+                    
+                    <form @submit.prevent="CancelRoute">
+                        <div class="tableFrom">
+                            <table class="travel" id='cancelRoute'>
+                                <tr>
+                                    <td>Route ID</td>
+                                    <td><input placeholder="Route ID" v-model="cancelRouteData.routeId" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Start Date</td>
+                                    <td><input type="date" v-model="cancelRouteData.startDate" required></td>
+                                </tr>                               
+                            </table>
                         </div>
                     </form>
-
-
-
-
+                    <button type="submit" name="submit" class="btn-default">Submit</button>
                 </div>
-
             </div>
-
-        </div>
-    </div>
+         </div>
 </template>
 
 <script>
@@ -154,7 +110,7 @@ const employeesRepository = repositoryFactory.get("employees");
         data() {
             return {
                 passengerData: null,
-                activetab: '1',
+                activetab: '2',
                 newRouteData: {
                     routeName:'',
                     carNum:null,
@@ -163,9 +119,21 @@ const employeesRepository = repositoryFactory.get("employees");
                     startTime:'',
                     stations:[{stationId: null, duration: null}],
                     lastStation:null,
+                },
+                cancelRouteData:{
+                    routeId:null,
+                    startDate:null,
+                },
+                employeeList:
+                        [{employeeId:1,
+                        employeeName:"FirstEmpl",
+                        employeeStation:2},
+                        { employeeId:2,
+                        employeeName:"SecondEmpl",
+                        employeeStation:4}]
                 }
             }
-        },
+        ,
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
@@ -193,23 +161,49 @@ const employeesRepository = repositoryFactory.get("employees");
                             stations:[{stationId: null, duration: null}],
                             lastStation:null,
                         }
-                    });
+                    }).catch(() => {
+                        this.newRouteData = {
+                            routeName:'',
+                            carNum:null,
+                            seatNum:null,
+                            dates: [null],
+                            startTime:'',
+                            stations:[{stationId: null, duration: null}],
+                            lastStation:null,
+                        }
+                    })
+            },
+            CancelRoute() {
+                employeesRepository.cancelRoute(this.cancelRouteData)
+                    .then(()=>{
+                        this.cancelRouteData={
+                            routeId:null,
+                            startDate:null,
+                        }
+                    }).catch(()=>{
+                        this.cancelRouteData={
+                            routeId:'',
+                            startDate:''
+                        }
+                    })
+            },
+            AdjustHours(employeeId){
+                employeesRepository.adjustHours(employeeId)
             }
-        }
     }
+    }  
 </script>
 
 <style scoped>
     /* Import Google Font */
     @import url(https://fonts.googleapis.com/css?family=Nunito+Sans);
-
     /* RESET */
     * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
     }
-
+    .btn-
     .container {
         max-width: 1000px;
         min-width: 420px;
@@ -218,13 +212,15 @@ const employeesRepository = repositoryFactory.get("employees");
         font-size: 0.9em;
         color: black;
     }
+    span{
+        display: block ruby;
+    }
 
     /* Style the tabs */
     .tabs {
         overflow: hidden;
         margin-bottom: -2px; /* hide bottom border */
     }
-
     .tabs a{
         float: left;
         cursor: pointer;
@@ -239,13 +235,11 @@ const employeesRepository = repositoryFactory.get("employees");
     .tabs a:last-child {
         border-right: 1px solid #ccc;
     }
-
     /* Change background color of tabs on hover */
     .tabs a:hover {
         background-color: #aaa;
         color: #fff;
     }
-
     /* Styling for active tab */
     .tabs a.active {
         background-color: #fff;
@@ -253,7 +247,6 @@ const employeesRepository = repositoryFactory.get("employees");
         border-bottom: 2px solid #fff;
         cursor: default;
     }
-
     /* Style the tab content */
     .tabcontent {
         padding: 30px 50px;
@@ -262,7 +255,6 @@ const employeesRepository = repositoryFactory.get("employees");
         box-shadow: 4px 4px 8px #e1e1e1;
         width: 100%;
     }
-
     .tabcontent td {
         padding: 0.3em 0.4em;
         color: #484848;
@@ -280,7 +272,8 @@ const employeesRepository = repositoryFactory.get("employees");
         border: 1px solid #ccc;
         border-radius: 10px;
     }
-    .data { width: 120px; }
+    .data { width: 120px; 
+    }
     .content {
         background-color: white;
     }
@@ -288,16 +281,15 @@ const employeesRepository = repositoryFactory.get("employees");
         font-family: arial, sans-serif;
         display: inline;
     }
-
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-
     .travel tr:nth-child(odd) {
         background-color:#fff ;
     }
     .travel tr:nth-child(even) {
-        background-color:#888    }
+        background-color:#888;
+    }
 </style>
