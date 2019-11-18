@@ -24,7 +24,8 @@ export default {
         return {
             fromCity: '',
             toCity: '',
-            date: new Date(),
+            date: new Date()
+            ,
         }
     },
     methods: {
