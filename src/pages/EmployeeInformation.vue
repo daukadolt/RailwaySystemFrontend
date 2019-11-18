@@ -7,14 +7,16 @@
             <th>Starting Hour</th>
             <th>End Hour</th>
         </tr>
-        
         <tr v-for="(employeeWorkDay , i) in employeeWorkDayList " :key="i">
-            <td><input v-model = "employeeWorkDay.week_day" placeholder="week_day"></td>
+            <td>{{employeeWorkDay.week_day}}</td>
             <td><input v-model = "employeeWorkDay.start_hour" placeholder="start_hour" ></td>
             <td><input v-model = "employeeWorkDay.end_hour" placeholder="end_hour" ></td>
         </tr>
     </table>
     </div>
+    
+    <button type="submit">Change Schedule</button>
+    <br><br>
     <div>
         <table class="travel">
             <tr>
@@ -22,9 +24,10 @@
                 <th><input type = "number" placeholder= "salary" v-model = "employee.salary"></th>
             </tr>
         </table>
+        
 
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">Update Salary</button>
 </div>
 </template>
 
