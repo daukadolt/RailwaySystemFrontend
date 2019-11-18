@@ -2,7 +2,7 @@
     <div>
 
         <div class="tabs">
-            <div style="    font-size:50px">Station #{{station}}</div>
+            <div style="    font-size:50px">Station #{{this.$route.query}}</div>
             <table class="travel" id='Station Employees'>
                 <tr>
                     <th>Employee Id</th>
@@ -11,29 +11,32 @@
                 </tr>
                 <tr v-for="(employee, i) in employeeList" :key="i">
                 <td>{{employee.employeeId}}</td>
-                <td>{{employee.employeeEmail}}</td>
-                <td><!---router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"---><button>Edit</button><!---/router-link---></td>
+                <td>{{employee.email}}</td>
+                <td><router-link :to="{path: 'emp_info', query: {employeeId: employee.employeeId}}"> <button>Edit</button> </router-link></td>
+                <!--<td>&lt;!&ndash;-router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"-&ndash;&gt;<button>Edit</button>&lt;!&ndash;-/router-link-&ndash;&gt;</td>-->
             </tr>
             </table>
         </div>
     </div>
 </template>
 <script>
+import { repositoryFactory } from "../api/repositoryFactory"
+const employeesRepository = repositoryFactory.get("employees");
+
 export default {
-    name: "EmployeeTable",
-        data() {
-            return {
-                employeeList:[
-                    {
-                        employeeId:1,
-                        employeeEmail:"first@gmail.com",
-                    },
-                    {
-                        employeeId:2,
-                        employeeEmail:"second@gmail.com",
-                    }]
-            }
+    name: "StationEmployees",
+    created() {
+        this.employeeList = [];
+        employeesRepository.getStationEmployees(this.$route.query.stationId)
+            .then( (response) => {
+                this.employeeList = response.data;
+            } )
+    },
+    data() {
+        return {
+            employeeList:[]
         }
+    }
 }
 </script>
 <style scoped>

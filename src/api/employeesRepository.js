@@ -32,6 +32,14 @@ export default {
 
     getStations() {
         return repository.get(`${resource}/getStations`)
+    },
+    getStationEmployees(stationId) {
+        return repository.get(`${resource}/getEmployees`, {
+            params: {
+                stationId
+            }
+
+        })
     }
     /* </Stations> */
 }
