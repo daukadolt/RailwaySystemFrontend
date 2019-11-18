@@ -15,9 +15,10 @@
                             <th>Station ID</th>
                         </tr>
                         <tr v-for="(station, i) in stationList" :key="i">
-                        <td>             
-                            <button>Station {{station.stationId}}</button>               
-                            <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"--><!---/router-link---></td>
+                        <td>
+                            <router-link :to="{path: 'station_employees', query: {stationId: station.id}}"><button>Station {{station}}</button></router-link>
+                            <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"--><!---/router-link--->
+                        </td>
                         </tr>
                     </table>
                 </div>
@@ -102,6 +103,13 @@ const employeesRepository = repositoryFactory.get("employees");
 
     export default {
         name: "ManagerAccount",
+        created() {
+            employeesRepository.getStations()
+                .then( (response) => {
+                    this.stationList = [];
+                    this.stationList = response.data
+                } )
+        },
         data() {
             return {
                 passengerData: null,
@@ -127,13 +135,7 @@ const employeesRepository = repositoryFactory.get("employees");
                         employeeStation:4}]
                 ,
                 stationList:[
-                    {stationId:1},
-                    {stationId:2},
-                    {stationId:3},
-                    {stationId:4},
-                    {stationId:5},
-                    {stationId:6},
-                    {stationId:7}
+
                 ]
             }},
         beforeRouteEnter(to, from, next) {
