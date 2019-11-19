@@ -4,8 +4,8 @@
 
             <div class="tabs">
                 <a v-on:click="activetab='1'" v-bind:class="[ activetab === '1' ? 'active' : '' ]">My Profile</a>
-                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Past Travels</a>
-                <a v-on:click="activetab='3'" v-bind:class="[ activetab === '3' ? 'active' : '' ]">Future Travels</a>
+                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Past Trips</a>
+                <a v-on:click="activetab='3'" v-bind:class="[ activetab === '3' ? 'active' : '' ]">Future Trips</a>
             </div>
 
             <div class="content">
@@ -24,83 +24,55 @@
                 </div>
                 <div v-if="activetab ==='2'" class="tabcontent">
                     <div class="tableFrom">
-                        <table class="travel" id='pastTravel'>
+                        <table class="travel" id='pastTrips'>
                             <tr>
-                                <th>Company</th>
-                                <th>Contact</th>
-                                <th>Country</th>
+                                <th>Route ID</th>
+                                <th>Route name</th>
+                                <th>From</th>
+                                <th>Departure Date</th>
+                                <th>To</th>
+                                <th>Arrival Date</th>
+                                <th>Ticket ID</th>
+                                <th>Seat Number</th>
                             </tr>
-                            <tr>
-                                <td>Alfreds Futterkiste</td>
-                                <td>Maria Anders</td>
-                                <td>Germany</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr>
-                            <tr>
-                                <td>Island Trading</td>
-                                <td>Helen Bennett</td>
-                                <td>UK</td>
-                            </tr>
-                            <tr>
-                                <td>Laughing Bacchus Winecellars</td>
-                                <td>Yoshi Tannamuri</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Magazzini Alimentari Riuniti</td>
-                                <td>Giovanni Rovelli</td>
-                                <td>Italy</td>
+                            <tr v-for="(pastTrip, i) in pastTripList" :key="i">
+                                <td>{{pastTrip.routeId}}</td>
+                                <td>{{pastTrip.routeName}}</td>
+                                <td>{{pastTrip.fromStation}}</td>
+                                <td>{{pastTrip.fromDate}}</td>
+                                <td>{{pastTrip.toStation}}</td>
+                                <td>{{pastTrip.toDate}}</td>
+                                <td>{{pastTrip.ticketId}}</td>
+                                <td>{{pastTrip.seat}}</td>
                             </tr>
                         </table>
-                    </div>
+                    </div>  
                 </div>
                 <div v-if="activetab ==='3'" class="tabcontent">
                     <div class="tableFrom">
-                        <table class="travel" id='futureTravel'>
-                            <tr>
-                                <th>Company</th>
-                                <th>Contact</th>
-                                <th>Country</th>
-                            </tr>
-                            <tr>
-                                <td>Alfreds Futterkiste</td>
-                                <td>Maria Anders</td>
-                                <td>Germany</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr>
-                            <tr>
-                                <td>Island Trading</td>
-                                <td>Helen Bennett</td>
-                                <td>UK</td>
-                            </tr>
-                            <tr>
-                                <td>Laughing Bacchus Winecellars</td>
-                                <td>Yoshi Tannamuri</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Magazzini Alimentari Riuniti</td>
-                                <td>Giovanni Rovelli</td>
-                                <td>Italy</td>
-                            </tr>
+                        <table class="travel" id='futureTrips'>
+                        <tr>
+                            <th>Route ID</th>
+                            <th>Route name</th>
+                            <th>From</th>
+                            <th>Departure Date</th>
+                            <th>To</th>
+                            <th>Arrival Date</th>
+                            <th>Ticket ID</th>
+                            <th>Seat Number</th>
+                            <th></th>
+                        </tr>
+                        <tr v-for="(futureTrip, i) in futureTripList" :key="i">
+                            <td>{{futureTrip.routeId}}</td>
+                            <td>{{futureTrip.routeName}}</td>
+                            <td>{{futureTrip.fromStation}}</td>
+                            <td>{{futureTrip.fromDate}}</td>
+                            <td>{{futureTrip.toStation}}</td>
+                            <td>{{futureTrip.toDate}}</td>
+                            <td>{{futureTrip.ticketId}}</td>
+                            <td>{{futureTrip.seat}}</td>
+                            <td></td>
+                        </tr>
                         </table>
                     </div>
                 </div>
@@ -118,7 +90,27 @@ import store from '../store';
         data() {
             return {
                 passengerData: null,
-                activetab: '1'
+                activetab: '1',
+                pastTripList:[{
+                    routeId:1,
+                    routeName:"Fourth",
+                    fromStation:"First",
+                    fromDate:"2019-10-11",
+                    toStation:"Second",
+                    toDate:"2019-10-12",
+                    ticketId:2,
+                    seat:14
+                }],
+                futureTripList:[{
+                    routeId:2,
+                    routeName:"Fifth",
+                    fromStation:"Second",
+                    fromDate:"2019-12-11",
+                    toStation:"First",
+                    toDate:"2019-12-12",
+                    ticketId:3,
+                    seat:12
+                }]
             }
         },
         beforeRouteEnter(to, from, next) {
