@@ -75,8 +75,8 @@
                 </div>
                 <div v-if="activetab ==='6'" class="tabcontent">
                     {{cancelRouteData}}
-                    
-                    <form @submit.prevent="CancelRoute">
+
+                    <form @submit.prevent="cancelRoute">
                         <div class="tableFrom">
                             <table class="travel" id='cancelRoute'>
                                 <tr>
@@ -86,11 +86,11 @@
                                 <tr>
                                     <td>Start Date</td>
                                     <td><input type="date" v-model="cancelRouteData.startDate" required></td>
-                                </tr>                               
+                                </tr>
                             </table>
                         </div>
+                        <button type="submit" name="submit" class="btn-default">Submit</button>
                     </form>
-                    <button type="submit" name="submit" class="btn-default">Submit</button>
                 </div>
             </div>
          </div>
@@ -163,7 +163,7 @@ let setNull = obj => setAll(obj, null);
                         setNull(this.newRouteData)
                     })
             },
-            CancelRoute() {
+            cancelRoute() {
                 employeesRepository.cancelRoute(this.cancelRouteData)
                     .then(()=>{
                         setNull(this.cancelRouteData)
