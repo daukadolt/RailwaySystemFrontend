@@ -49,10 +49,10 @@ export default {
             signUpUser() {
                 passengersRepository.sign_up(this.passengerSignUpData)
                     .then(response => {
-                        passengersRepository.getPassengerInfo(response.data)
-                            .then(response => {
-                                this.authenticateUser(response.data);
-                            });
+                        return passengersRepository.getPassengerInfo(response.data)
+                    })
+                    .then(response => {
+                        this.authenticateUser(response.data);
                     });
             },
             authenticateUser(passengerData) {
