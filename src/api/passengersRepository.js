@@ -8,5 +8,12 @@ export default {
     },
     sign_up(formData) {
         return repository.post(`${resource}/sign_up`, qs.stringify({...formData}));
+    },
+    getPassengerInfo(passengerId) {
+        return repository.get(`${resource}/profileInfo`, {
+            params: {
+                passengerId
+            }
+        })
     }
 }
