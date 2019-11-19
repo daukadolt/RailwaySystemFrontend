@@ -13,7 +13,12 @@ export default {
         return repository.post(`${resource}/newRoute`, routeData)
     },
     cancelRoute(cancelRouteData){
-        return repository.post(`${resource}/cancelRoute`,cancelRouteData)
+        return repository.delete(`${resource}/cancelRoute`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(cancelRouteData)
+        })
     },
     /* <--- </Routes> ---> */
 
