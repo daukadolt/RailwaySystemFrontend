@@ -8,7 +8,8 @@ const store = new Vuex.Store({
         currentCity: null,
         currentCityRoutesList: [],
         routesList: [],
-        passenger: null
+        passenger: null,
+        employee: null
     },
     mutations: {
         setCities(state, cities) {
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
         },
         setPassenger(state, passenger) {
             state.passenger = passenger;
+        },
+        setEmployee(state, employee) {
+            state.employee = employee;
         }
     },
     getters: {

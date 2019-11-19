@@ -30,6 +30,10 @@ export default {
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
+            },
+            authenticateUser(employeeData) {
+                this.$store.commit('setEmployee', employeeData);
+                this.$router.push("emp_");
             }
         }
     }
