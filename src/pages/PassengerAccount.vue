@@ -26,39 +26,22 @@
                     <div class="tableFrom">
                         <table class="travel" id='pastTravel'>
                             <tr>
-                                <th>Company</th>
-                                <th>Contact</th>
-                                <th>Country</th>
+                                <th>From station</th>
+                                <th>To station</th>
+                                <th>From date</th>
+                                <th>To date</th>
+                                <th>Route name</th>
+                                <th>Carriage number</th>
+                                <th>Seat number</th>
                             </tr>
-                            <tr>
-                                <td>Alfreds Futterkiste</td>
-                                <td>Maria Anders</td>
-                                <td>Germany</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr>
-                            <tr>
-                                <td>Island Trading</td>
-                                <td>Helen Bennett</td>
-                                <td>UK</td>
-                            </tr>
-                            <tr>
-                                <td>Laughing Bacchus Winecellars</td>
-                                <td>Yoshi Tannamuri</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Magazzini Alimentari Riuniti</td>
-                                <td>Giovanni Rovelli</td>
-                                <td>Italy</td>
+                            <tr v-for="(travel, index) in pastTravels" :key="'past travel ' + index">
+                                <td>{{travel.fromStation}}</td>
+                                <td>{{travel.toStation}}</td>
+                                <td>{{travel.fromDate}}</td>
+                                <td>{{travel.toDate}}</td>
+                                <td>{{travel.routeName}}</td>
+                                <td>{{travel.carriageNum}}</td>
+                                <td>{{travel.seat}}</td>
                             </tr>
                         </table>
                     </div>
@@ -67,39 +50,22 @@
                     <div class="tableFrom">
                         <table class="travel" id='futureTravel'>
                             <tr>
-                                <th>Company</th>
-                                <th>Contact</th>
-                                <th>Country</th>
+                                <th>From station</th>
+                                <th>To station</th>
+                                <th>From date</th>
+                                <th>To date</th>
+                                <th>Route name</th>
+                                <th>Carriage number</th>
+                                <th>Seat number</th>
                             </tr>
-                            <tr>
-                                <td>Alfreds Futterkiste</td>
-                                <td>Maria Anders</td>
-                                <td>Germany</td>
-                            </tr>
-                            <tr>
-                                <td>Centro comercial Moctezuma</td>
-                                <td>Francisco Chang</td>
-                                <td>Mexico</td>
-                            </tr>
-                            <tr>
-                                <td>Ernst Handel</td>
-                                <td>Roland Mendel</td>
-                                <td>Austria</td>
-                            </tr>
-                            <tr>
-                                <td>Island Trading</td>
-                                <td>Helen Bennett</td>
-                                <td>UK</td>
-                            </tr>
-                            <tr>
-                                <td>Laughing Bacchus Winecellars</td>
-                                <td>Yoshi Tannamuri</td>
-                                <td>Canada</td>
-                            </tr>
-                            <tr>
-                                <td>Magazzini Alimentari Riuniti</td>
-                                <td>Giovanni Rovelli</td>
-                                <td>Italy</td>
+                            <tr v-for="(travel, index) in futureTravels" :key="'future travel ' + index">
+                                <td>{{travel.fromStation}}</td>
+                                <td>{{travel.toStation}}</td>
+                                <td>{{travel.fromDate}}</td>
+                                <td>{{travel.toDate}}</td>
+                                <td>{{travel.routeName}}</td>
+                                <td>{{travel.carriageNum}}</td>
+                                <td>{{travel.seat}}</td>
                             </tr>
                         </table>
                     </div>
@@ -112,12 +78,26 @@
 
 <script>
 import store from '../store';
+import { repositoryFactory } from '../api/repositoryFactory'
+const passengersRepository = repositoryFactory.get("passengers");
 
     export default {
         name: "PassengerAccount",
+        created() {
+            passengersRepository.getPassengerPastTrips(store.state.passenger.passengerId)
+                .then(response => {
+                    this.pastTravels = response.data;
+                    return passengersRepository.getPassengerNextTrips(store.state.passenger.passengerId)
+                })
+                .then(response => {
+                    this.futureTravels = response.data
+                })
+        },
         data() {
             return {
                 passengerData: null,
+                pastTravels: null,
+                futureTravels: null,
                 activetab: '1'
             }
         },

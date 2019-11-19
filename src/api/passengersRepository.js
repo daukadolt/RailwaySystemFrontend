@@ -15,5 +15,19 @@ export default {
                 passengerId
             }
         })
+    },
+    getPassengerPastTrips(passengerId) {
+        return repository.get(`${resource}/pastTrip`, {
+            params: {
+                passengerId
+            }
+        })
+    },
+    getPassengerNextTrips(passengerId) {
+        return repository.get(`${resource}/nextTrip`, {
+            params: {
+                passengerId
+            }
+        })
     }
 }
