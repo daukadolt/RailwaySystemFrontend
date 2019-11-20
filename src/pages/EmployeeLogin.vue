@@ -33,7 +33,7 @@ export default {
             },
             authenticateUser(employeeData) {
                 this.$store.commit('setEmployee', employeeData);
-                this.$router.push("emp_");
+                this.$router.push("manager_account");
             }
         }
     }
