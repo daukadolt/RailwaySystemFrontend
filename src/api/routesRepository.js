@@ -13,5 +13,13 @@ export default {
             }
         }
         );
+    },
+    getSeatsForRoute(startDate, depDate, arrDate, routeId) {
+        return repository.get(`${resource}/${routeId}/seats`, {params: {
+                date: startDate,
+                dep_date: depDate,
+                arr_date: arrDate
+            }
+        })
     }
 };

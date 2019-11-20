@@ -1,6 +1,6 @@
 <template>
 <div >
-    
+    <span style="color: white">{{ this.$route.query }}</span>
    <div class="main-content">
       <div class="ticket">
         <div class="ticket__main">
