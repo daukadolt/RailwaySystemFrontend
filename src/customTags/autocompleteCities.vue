@@ -43,16 +43,14 @@
 
 <style scoped>
     .autocomplete {
-        position: relative;
-        width: 130px;
+        position: inline;
+        margin:10px;
     }
 
     .autocomplete-results {
         padding: 0;
         margin: 0;
         border: 1px solid #eeeeee;
-        height: 120px;
-        overflow: auto;
     }
 
     .autocomplete-result {
@@ -65,5 +63,12 @@
     .autocomplete-result:hover {
         background-color: #4AAE9B;
         color: white;
+    }
+    input {
+        align-content: center;
+        vertical-align: middle;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
     }
 </style>

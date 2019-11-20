@@ -1,12 +1,15 @@
 <template>
    
-    <div class="form-inline"> 
-        <div class="text">Search the routes</div>
-        <form @submit.prevent="searchFromTo">
+    <div class="container" > 
+        <div class="text" >Search the routes</div>
+        <form @submit.prevent="searchFromTo" class="form-inline"> 
+            <div>From</div>
             <autocompleteCities :items="this.$store.state.cities" v-model="fromCity"/>
+            <div>To</div>
             <autocompleteCities :items="this.$store.state.cities" v-model="toCity"/>
-            <input type="date" v-model="date" required>
-            <button type="submit" class="btn">Search</button>
+            <div style="margin-right:10px">Date</div>
+            <input type="date" v-model="date" class="date" required>
+            <button class="btn">Search</button>
         </form>
     </div>
 </template>
@@ -37,9 +40,17 @@ export default {
 }
 </script>
 <style scoped>
+    .container{
+        width: 60%;
+        margin-bottom: 20px;
+        margin-top:20px;
+        background-color: rgba(99, 142, 182, 0.7);
+        border-radius: 20px;
+    }
     .text{
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         font-size: 50px;
+        color: white;
     }
     .form-inline{
         display: inline-block;
@@ -67,6 +78,18 @@ export default {
         touch-action: manipulation;
         cursor: pointer;
         border: 1px solid transparent;
+        background-color: white;
         border-radius: 4px;
+        margin:10px;
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .form-inline{
+      display: block ruby;
+        flex-flow: row wrap;
+     align-items: center;  
+        
     }
 </style>
