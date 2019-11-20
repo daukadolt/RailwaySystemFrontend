@@ -23,7 +23,7 @@
                 from: routeInstance.from.id,
                 to: routeInstance.to.id,
                 routeId: routeInstance.routeId,
-                trainId: 1
+                trainId: routeInstance.trainId
                 }
                 }"><button class="btn-order">Order</button></router-link></td>
             </tr>

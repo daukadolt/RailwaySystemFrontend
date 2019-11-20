@@ -21,5 +21,8 @@ export default {
                 arr_date: arrDate
             }
         })
+    },
+    bookTicket(ticketData) {
+        return repository.post(`${resource}/book`, ticketData)
     }
 };
