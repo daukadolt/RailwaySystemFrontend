@@ -19,10 +19,11 @@
                 <td>{{routeInstance.arrDate}}</td>
                 <td v-if="userAuthenticated"><router-link :to="{path: 'booking', query:
                 {
-                startDate: routeInstance.startDate,
-                depDate: routeInstance.depDate,
-                arrDate: routeInstance.arrDate,
-                routeId: routeInstance.routeId
+                date: routeInstance.startDate,
+                from: routeInstance.from.id,
+                to: routeInstance.to.id,
+                routeId: routeInstance.routeId,
+                trainId: routeInstance.trainId
                 }
                 }"><button class="btn-order">Order</button></router-link></td>
             </tr>
