@@ -60,7 +60,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <button type="submit" name="submit" class="btn-default">Submit</button>
+                        <button type="submit" name="submit" class="btn">Submit</button>
                     </form>
                 </div>
                 <div v-if="activetab ==='2'" class="tabcontent">
@@ -82,7 +82,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <button type="submit" name="submit" class="btn-default">Submit</button>
+                        <button type="submit" name="submit" class="btn">Submit</button>
                     </form>
                 </div>
                 
@@ -262,17 +262,37 @@ const employeesRepository = repositoryFactory.get("employees");
     }
     .travel {
         font-family: arial, sans-serif;
-        display: inline;
+        display: inline;    
+        border-collapse: collapse;
+        
     }
     .travel td, th {
+        width: 40%;
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:#888;
+    .travel td:nth-child(:last-child) {
+        border-start-end-radius: 10px;
+    
     }
-</style>
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .btn{
+        margin-top:5px;
+        padding:5px;
+        border-color: white;
+        background-color: rgb(125, 141, 185);
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+</style>        

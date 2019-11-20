@@ -26,7 +26,7 @@ export default {
 <style scoped>
 
     #navigation-container {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
     height: 70px;
     background-color: #f8f9fa80;

@@ -33,19 +33,45 @@
 <style scoped>
     table {
         font-family: arial, sans-serif;
-        display: inline;        
+        display: inline;
+        border-collapse: collapse;
+        background-color: transparent;
+        padding:8px;
     }
 
-    td, th {
+    td {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
+        background-color: white;
     }
 
-    tr:nth-child(odd) {
-        background-color:#fff ;
+    tr {
+        background-color:transparent;
+        padding:8px;
     }
-    tr:nth-child(even) {
-        background-color:rgb(158, 155, 155) ;
+    th{
+        padding:8px;
+        background-color: rgb(146, 166, 223);
+        color: white;
+        
+    }
+    th:first-child{
+        background-color: rgb(146, 166, 223);
+        border-top-left-radius: 10px;
+    }
+    th:last-child{
+        background-color: rgb(146, 166, 223);
+        border-top-right-radius: 10px;
+    }
+    
+    .btn{
+        border:10px;
+        border-color: white;
+        background-color: white;
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 </style>

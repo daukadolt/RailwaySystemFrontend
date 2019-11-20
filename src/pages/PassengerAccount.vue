@@ -4,8 +4,8 @@
 
             <div class="tabs">
                 <a v-on:click="activetab='1'" v-bind:class="[ activetab === '1' ? 'active' : '' ]">My Profile</a>
-                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Past Travels</a>
-                <a v-on:click="activetab='3'" v-bind:class="[ activetab === '3' ? 'active' : '' ]">Future Travels</a>
+                <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Past Trips</a>
+                <a v-on:click="activetab='3'" v-bind:class="[ activetab === '3' ? 'active' : '' ]">Future Trips</a>
             </div>
 
             <div class="content">
@@ -24,7 +24,7 @@
                 </div>
                 <div v-if="activetab ==='2'" class="tabcontent">
                     <div class="tableFrom">
-                        <table class="travel" id='pastTravel'>
+                        <table class="travel" id='pastTrips'>
                             <tr>
                                 <th>From station</th>
                                 <th>To station</th>
@@ -44,11 +44,11 @@
                                 <td>{{travel.seat}}</td>
                             </tr>
                         </table>
-                    </div>
+                    </div>  
                 </div>
                 <div v-if="activetab ==='3'" class="tabcontent">
                     <div class="tableFrom">
-                        <table class="travel" id='futureTravel'>
+                        <table class="travel" id='futureTrips'>
                             <tr>
                                 <th>From station</th>
                                 <th>To station</th>
@@ -202,18 +202,26 @@ const passengersRepository = repositoryFactory.get("passengers");
     .travel {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
     }
-
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:rgb(158, 155, 155) ;
+    .travel th:first-child {
+        border-top-left-radius: 10px;
+    
+    }
+    .travel th:last-child {
+        border-top-right-radius: 10px;
+    
+    }
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
     }
 </style>

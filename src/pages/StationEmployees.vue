@@ -2,7 +2,7 @@
     <div>
 
         <div class="tabs">
-            <div style="    font-size:50px">Station #{{this.$route.query}}</div>
+            <div style="font-size:50px">Station #{{this.$route.query.stationId}}</div>
             <table class="travel" id='Station Employees'>
                 <tr>
                     <th>Employee Id</th>
@@ -10,9 +10,9 @@
                     <th>Edit</th>
                 </tr>
                 <tr v-for="(employee, i) in employeeList" :key="i">
-                <td>{{employee.employeeId}}</td>
-                <td>{{employee.email}}</td>
-                <td><router-link :to="{path: 'emp_info', query: {employeeId: employee.employeeId}}"> <button>Edit</button> </router-link></td>
+                    <td>{{employee.employeeId}}</td>
+                    <td>{{employee.email}}</td>
+                    <td><router-link :to="{path: 'emp_info', query: {employeeId: employee.employeeId}}"> <button class="btn ">Edit</button> </router-link></td>
                 <!--<td>&lt;!&ndash;-router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"-&ndash;&gt;<button>Edit</button>&lt;!&ndash;-/router-link-&ndash;&gt;</td>-->
             </tr>
             </table>
@@ -70,7 +70,7 @@ export default {
         border: 1px solid #ccc;
         border-right: none;
         background-color: #f1f1f1;
-        border-radius: 10px 10px 0 0;
+        border-radius: 10px;
         font-weight: bold;
     }
     .tabs a:last-child {
@@ -121,16 +121,28 @@ export default {
     .travel {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
     }
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:#888;
+    .travel td:nth-child(:last-child) {
+        border-start-end-radius: 10px;
+    
+    }
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
+    }
+    .travel th:first-child{
+        border-top-left-radius: 10px;
+    }
+    .travel th:last-child{
+        border-top-right-radius: 10px;
     }
 </style>

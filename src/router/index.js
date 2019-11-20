@@ -11,6 +11,7 @@ import BookingPage from "../pages/BookingPage.vue";
 import EmployeeLogin from "../pages/EmployeeLogin.vue";
 import StationEmployees from "../pages/StationEmployees.vue";
 import EmployeeInformation from "../pages/EmployeeInformation.vue";
+import TicketOrder from "../pages/TicketOrder.vue";
 /* Pages */
 
 /* Middleware */
@@ -36,6 +37,7 @@ const router = new VueRouter({
         {path: '/agent_account', component: AgentAccount},
         {path: '/station_employees', component: StationEmployees},
         {path: '/emp_info' , component: EmployeeInformation},
+        {path: '/buyticket', component: TicketOrder},
     ]
 });
 
