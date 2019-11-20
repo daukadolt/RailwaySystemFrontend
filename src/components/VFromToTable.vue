@@ -24,7 +24,7 @@
                 arrDate: routeInstance.arrDate,
                 routeId: routeInstance.routeId
                 }
-                }"><button>Order</button></router-link></td>
+                }"><button class="btn-order">Order</button></router-link></td>
             </tr>
         </table>
     </div>
@@ -46,18 +46,39 @@
     table {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
+        background-color: transparent;
     }
 
-    td, th {
+    td{
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
+        background-color: white;
     }
 
-    tr:nth-child(odd) {
-        background-color:#fff ;
+    tr {
+        background-color:transparent;
     }
-    tr:nth-child(even) {
-        background-color:rgb(158, 155, 155) ;
+    th{
+        background-color: rgb(146, 166, 223);
+        color: white;
+        padding:8px;
+    }
+    th:first-child{
+        background-color: rgb(146, 166, 223);
+        border-top-left-radius: 10px;
+    }
+    th:last-child{
+        background-color: rgb(146, 166, 223);
+        border-top-right-radius: 10px;
+    }
+    .btn-order{
+        border-color: white;
+        background-color: white;
+    }
+    .btn-order:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 </style>

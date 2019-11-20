@@ -214,18 +214,26 @@ import store from '../store';
     .travel {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
     }
-
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:rgb(158, 155, 155) ;
+    .travel th:first-child {
+        border-top-left-radius: 10px;
+    
+    }
+    .travel th:last-child {
+        border-top-right-radius: 10px;
+    
+    }
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
     }
 </style>

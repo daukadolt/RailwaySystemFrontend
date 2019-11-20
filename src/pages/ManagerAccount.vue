@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <div id="tabs" class="container">
@@ -16,7 +17,7 @@
                         </tr>
                         <tr v-for="(station, i) in stationList" :key="i">
                         <td>
-                            <router-link :to="{path: 'station_employees', query: {stationId: station.id}}"><button>Station {{station}}</button></router-link>
+                            <router-link :to="{path: 'station_employees', query: {stationId: station.id}}"><button class="btn">Station {{station}}</button></router-link>
                             <!--router-link :to="{path: 'routeName', query: {routeId: employee.employeeId}}"--><!---/router-link--->
                         </td>
                         </tr>
@@ -33,44 +34,44 @@
                     <div class="tableFrom">
                         <table class="travel" id='createRoute'>
                             <tr>
-                                <td>Route Name</td>
-                                <td><input placeholder="from-to" v-model="newRouteData.routeName" required></td>
+                                <td width="7%">Route Name</td>
+                                <td width="7%"><input placeholder="from-to" v-model="newRouteData.routeName" required></td>
                             </tr>
                             <tr>
-                                <td>Number of carriages</td>
-                                <td><input placeholder="carriage number" v-model="newRouteData.carNum" required></td>
+                                <td width="7%">Number of carriages</td>
+                                <td width="7%"><input placeholder="carriage number" v-model="newRouteData.carNum" required></td>
                             </tr>
                             <tr>
-                                <td>Number of seats</td>
-                                <td><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
+                                <td width="7%">Number of seats</td>
+                                <td width="7%"><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
                             </tr>
                             <tr v-for="(startDate, index) in newRouteData.dates" :key="index">
-                                <td>dates when will take place</td>
-                                <td><input type="date" v-model="newRouteData.dates[index]" required> <button @click="addNewStartDate">Add new Date</button>
+                                <td width="7%">dates when will take place</td>
+                                <td width="7%" class="shift" ><input type="date" v-model="newRouteData.dates[index]" required> <div style="text-align: right"><button @click="addNewStartDate" class="btn">Add new Date</button></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>start time</td>
-                                <td><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
+                                <td width="7%">start time</td>
+                                <td width="7%"><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
                             </tr>
                             <tr style="background-color: white">
                                 <td>last station</td>
-                                <td><input placeholder="last station id" v-model="newRouteData.lastStation" required></td>
+                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.lastStation" required></td>
                             </tr>
                             <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
-                               <tr>
-                                    <td rowspan="2">Station #{{index+1}}</td>
-                                    <td><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
+                               <tr class="secondtable">
+                                    <td rowspan="2" width="7.23%">Station #{{index+1}}</td>
+                                    <td width="7%"><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
                                 </tr>
                             <tr>
-                            <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <button @click="addNewStation">Add new station</button>
+<td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
                             </tr>
                             </span>
                         </table>
                            
                         </div>
-                         <button type="submit" name="submit" class="btn btn-default">Submit</button>
+                         <button type="submit" class="btn" >Submit</button>
                     </form>
                 </div>
                 <div v-if="activetab ==='6'" class="tabcontent">
@@ -90,7 +91,7 @@
                             </table>
                         </div>
                     </form>
-                    <button type="submit" name="submit" class="btn-default">Submit</button>
+                    <button type="submit" class="btn">Submit</button>
                 </div>
             </div>
          </div>
@@ -136,7 +137,7 @@ const employeesRepository = repositoryFactory.get("employees");
                 ,
                 stationList:[
 
-                ]
+]
             }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
@@ -207,7 +208,10 @@ const employeesRepository = repositoryFactory.get("employees");
         margin: 0;
         padding: 0;
     }
-    .btn-
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
     .container {
         max-width: 1000px;
         min-width: 420px;
@@ -220,7 +224,7 @@ const employeesRepository = repositoryFactory.get("employees");
         display: block ruby;
     }
 
-    /* Style the tabs */
+/* Style the tabs */
     .tabs {
         overflow: hidden;
         margin-bottom: -2px; /* hide bottom border */
@@ -230,7 +234,7 @@ const employeesRepository = repositoryFactory.get("employees");
         cursor: pointer;
         padding: 12px 24px;
         transition: background-color 0.2s;
-        border: 1px solid #ccc;
+        border: 0px solid #ccc;
         border-right: none;
         background-color: #f1f1f1;
         border-radius: 10px 10px 0 0;
@@ -255,9 +259,10 @@ const employeesRepository = repositoryFactory.get("employees");
     .tabcontent {
         padding: 30px 50px;
         border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 0px 10px 10px 10px;
         box-shadow: 4px 4px 8px #e1e1e1;
         width: 100%;
+        background-color: white;
     }
     .tabcontent td {
         padding: 0.3em 0.4em;
@@ -276,7 +281,8 @@ const employeesRepository = repositoryFactory.get("employees");
         border: 1px solid #ccc;
         border-radius: 10px;
     }
-    .data { width: 120px; 
+    .data { 
+        width: 120px; 
     }
     .content {
         background-color: white;
@@ -284,16 +290,62 @@ const employeesRepository = repositoryFactory.get("employees");
     .travel {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
     }
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:#888;
+    .travel td:nth-child(:last-child) {
+        border-start-end-radius: 10px;
+    
+    }
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .secondtable {
+        width:500px
+    }
+    .travel th:first-child{
+        background-color: rgb(146, 166, 223);
+        border-top-left-radius: 10px;
+    }
+    .travel th:last-child{
+        background-color: rgb(146, 166, 223);
+        border-top-right-radius: 10px;
+    }
+    
+    .btn{
+        display:inline-block;
+        padding:0em 0.4em;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.15em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-weight:100;
+        color:#FFFFFF;
+        background-color: rgb(146, 166, 223);
+        box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+        text-align:center;
+        position:relative;
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    btn-order{
+        border:1px;
+        border-color: white;
+        background-color: white;
+    }
+    .shift{
+        margin-left: 10px;
     }
 </style>
