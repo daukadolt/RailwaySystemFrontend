@@ -161,7 +161,7 @@ let setNull = obj => setAll(obj, null);
                     .then(() => {
                         setNull(this.newRouteData)
                     }).catch(() => {
-                        setNull(this.newRouteData)
+                        alert("create route not working")
                     })
             },
             cancelRoute() {
@@ -169,7 +169,7 @@ let setNull = obj => setAll(obj, null);
                     .then(()=>{
                         setNull(this.cancelRouteData)
                     }).catch(()=>{
-                        setNull(this.cancelRouteData)
+                        alert("cancel route not working")
                     })
             },
             AdjustHours(employeeId){
