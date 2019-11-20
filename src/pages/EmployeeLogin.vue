@@ -30,6 +30,19 @@ export default {
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
+            },
+            authenticateUser(employeeData) {
+                let isAgent = employeeData.isAgent;
+                let isManager = employeeData.isManager;
+                if(isManager || isAgent) {
+                    this.$store.commit('setEmployee', employeeData);
+                    if(isManager) {
+                        this.$router.push("manager_account");
+                    }
+                    else if(isAgent) {
+                        this.$router.push("agent_account");
+                    }
+                }
             }
         }
     }
