@@ -30,7 +30,7 @@
 
             <div v-if="activetab ==='5'" class="tabcontent">
                 {{ newRouteData }}
-                <form @submit.prevent="SendData">
+                <form @submit.prevent="createRoute">
                     <div class="tableFrom">
                         <table class="travel" id='createRoute'>
                             <tr>
@@ -45,7 +45,7 @@
                                 <td width="7%">Number of seats</td>
                                 <td width="7%"><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
                             </tr>
-                            <tr v-for="(startDate, index) in newRouteData.dates" :key="index">
+                            <tr v-for="(startDate, index) in newRouteData.dates" :key="'A,'+index">
                                 <td width="7%">dates when will take place</td>
                                 <td width="7%" class="shift" ><input type="date" v-model="newRouteData.dates[index]" required> <div style="text-align: right"><button @click="addNewStartDate" class="btn">Add new Date</button></div>
                                 </td>
@@ -56,7 +56,7 @@
                             </tr>
                             <tr style="background-color: white">
                                 <td>last station</td>
-                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.lastStation" required></td>
+                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
                             </tr>
                             <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
                                <tr class="secondtable">
@@ -76,8 +76,8 @@
                 </div>
                 <div v-if="activetab ==='6'" class="tabcontent">
                     {{cancelRouteData}}
-                    
-                    <form @submit.prevent="CancelRoute">
+
+                    <form @submit.prevent="cancelRoute">
                         <div class="tableFrom">
                             <table class="travel" id='cancelRoute'>
                                 <tr>
@@ -87,11 +87,11 @@
                                 <tr>
                                     <td>Start Date</td>
                                     <td><input type="date" v-model="cancelRouteData.startDate" required></td>
-                                </tr>                               
+                                </tr>
                             </table>
                         </div>
+                        <button type="submit" class="btn">Submit</button>
                     </form>
-                    <button type="submit" class="btn">Submit</button>
                 </div>
             </div>
          </div>
@@ -101,6 +101,8 @@
 import store from '../store';
 import { repositoryFactory } from "../api/repositoryFactory"
 const employeesRepository = repositoryFactory.get("employees");
+let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
+let setNull = obj => setAll(obj, null);
 
     export default {
         name: "ManagerAccount",
@@ -122,7 +124,7 @@ const employeesRepository = repositoryFactory.get("employees");
                     dates: [null],
                     startTime:'',
                     stations:[{stationId: null, duration: null}],
-                    lastStation:null,
+                    LastStation:null,
                 },
                 cancelRouteData:{
                     routeId:null,
@@ -154,42 +156,20 @@ const employeesRepository = repositoryFactory.get("employees");
             addNewStation() {
                 this.newRouteData.stations.push({stationId: null, duration: null});
             },
-            SendData() {
+            createRoute() {
                 employeesRepository.createRoute(this.newRouteData)
                     .then(() => {
-                        this.newRouteData = {
-                            routeName:'',
-                            carNum:null,
-                            seatNum:null,
-                            dates: [null],
-                            startTime:'',
-                            stations:[{stationId: null, duration: null}],
-                            lastStation:null,
-                        }
+                        setNull(this.newRouteData)
                     }).catch(() => {
-                        this.newRouteData = {
-                            routeName:'',
-                            carNum:null,
-                            seatNum:null,
-                            dates: [null],
-                            startTime:'',
-                            stations:[{stationId: null, duration: null}],
-                            lastStation:null,
-                        }
+                        setNull(this.newRouteData)
                     })
             },
-            CancelRoute() {
+            cancelRoute() {
                 employeesRepository.cancelRoute(this.cancelRouteData)
                     .then(()=>{
-                        this.cancelRouteData={
-                            routeId:null,
-                            startDate:null,
-                        }
+                        setNull(this.cancelRouteData)
                     }).catch(()=>{
-                        this.cancelRouteData={
-                            routeId:'',
-                            startDate:''
-                        }
+                        setNull(this.cancelRouteData)
                     })
             },
             AdjustHours(employeeId){
