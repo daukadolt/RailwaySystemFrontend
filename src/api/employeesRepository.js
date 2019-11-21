@@ -73,11 +73,8 @@ export default {
     },
 
     updateEmployeeSalary(employeeId, newSalary) {
-        return repository.put(`${resource}/${employeeId}`, {
-            params: {
-                salary: newSalary
-            }
-        })
+        console.log(employeeId, newSalary);
+        return repository.put(`${resource}/salary/${employeeId}?salary=${newSalary}`, )
     }
 
     /* <--- </ActuallyEmployees> ---> */
