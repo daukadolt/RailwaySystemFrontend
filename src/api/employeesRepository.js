@@ -51,7 +51,7 @@ export default {
     /* <--- <ActuallyEmployees> ---> */
 
     getEmployeeSchedule(employeeId) {
-        return repository.get(`${resource}/${employeeId}`, {
+        return repository.get(`${resource}/schedule`, {
             params: {
                 e_id: employeeId
             }
@@ -69,6 +69,14 @@ export default {
     updateEmployeeSchedule(employeeId, weekSchedule) {
         return repository.put(`${resource}/adjust/${employeeId}`, {
                 schedule: weekSchedule
+        })
+    },
+
+    updateEmployeeSalary(employeeId, newSalary) {
+        return repository.put(`${resource}/${employeeId}`, {
+            params: {
+                salary: newSalary
+            }
         })
     }
 
