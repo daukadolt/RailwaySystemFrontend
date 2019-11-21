@@ -4,20 +4,17 @@
     queryParams {{this.$route.query}}
     chosenSeats {{this.chosenSeats}}<div class="move">
     <div v-for="(arrayOfSeats, carriageNumber) in variants" v-bind:key="'Carriage ' + carriageNumber">
-      <button>Carriage #{{ carriageNumber }}</button>
-      <table>
-        <tr>
-          <th v-for="(seatObj, i) in variants[carriageNumber]" :key="'Seat ' + i">
+      <button>Carriage #{{ carriageNumber }}</button><br>
+      <div v-for="(seatObj, i) in variants[carriageNumber]" :key="'Seat ' + i" style="display:inline-table; padding:4px;">
             <input type="checkbox" :checked='!variants[carriageNumber][i]["is_free"]'
                    @change="updateSelectedSeats(carriageNumber, seatObj['seatNum'], $event)"
                    :disabled='!variants[carriageNumber][i]["is_free"]'/>
             {{seatObj['seatNum']}}
-          </th>
-        </tr>
-
-      </table></div>
-      <button @click="bookSelectedSeats" class="book">Book</button>
+          </div><br>
+      
     </div>
+    <button @click="bookSelectedSeats" class="book">Book</button>
+  </div>
   </div>
 </template>
 <script>
@@ -76,7 +73,7 @@
   button{
   display: inline-block;
     padding: 0.3em -1.3em;
-    width:50%;
+    width:30%;
 -webkit-box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
 -moz-box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
 box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
@@ -92,6 +89,7 @@ box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     font-size: 21px;
+
 }
 
 button:hover {
@@ -99,25 +97,28 @@ background-color : #214b64;
 }
 .book{
    background: linear-gradient(to bottom right, rgb(3, 151, 15), #72ff20);
-   width: 10%;
-   
+   width: 30%;
+   padding:10px;
 text-align: center;
 }
+
 .move{
+      padding-top: 3%;
  -webkit-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
 -moz-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
 box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
 background-color: white; 
 width: 70%;
 height: 70%;
-margin-left: 17%;
+margin-left: 15%;
 border-radius: 0.9em;
+padding-left: 15%;
+padding-right:15%;
 }
 @media all and (max-width:30em){
 .button{
 display:block;
 margin:0.2em auto;
-width:30% ;
 text-align: center;
 }
 
