@@ -1,4 +1,3 @@
-
 <template>
     <div>
         <div id="tabs" class="container">
@@ -24,10 +23,6 @@
                     </table>
                 </div>
             </div>
-                
-
-
-
             <div v-if="activetab ==='5'" class="tabcontent">
                 {{ newRouteData }}
                 <form @submit.prevent="createRoute">
@@ -52,7 +47,7 @@
                             </tr>
                             <tr>
                                 <td width="7%">start time</td>
-                                <td width="7%"><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
+                                <td width="7%"><input class="without" step="1" type="time" ng-model="endTime" v-model="newRouteData.startTime" required></td>
                             </tr>
                             <tr style="background-color: white">
                                 <td>last station</td>
@@ -64,7 +59,7 @@
                                     <td width="7%"><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
                                 </tr>
                             <tr>
-<td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
+                                <td><input class="without" step="1" type="time" ng-model="endTime" v-model="newRouteData.stations[index].duration" required><div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
                             </tr>
                             </span>
@@ -188,9 +183,37 @@ let setNull = obj => setAll(obj, null);
         margin: 0;
         padding: 0;
     }
+    .without::-webkit-datetime-edit-ampm-field {
+   display: none;
+ }
+ input[type=time]::-webkit-clear-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   margin: 0; 
+ }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   appearance: none;
+   margin: 0; 
+  }
     .btn:hover{
         columns: white;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+    }
+    input[type=time]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance:none;
+        appearance: none;
+        margin: -10px; 
     }
     .container {
         max-width: 1000px;
