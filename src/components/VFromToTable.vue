@@ -23,7 +23,9 @@
                 from: routeInstance.from.id,
                 to: routeInstance.to.id,
                 routeId: routeInstance.routeId,
-                trainId: routeInstance.trainId
+                trainId: routeInstance.trainId,
+                depDate: routeInstance.depDate,
+                arrDate: routeInstance.arrDate
                 }
                 }"><button class="btn-order">Order</button></router-link></td>
             </tr>
