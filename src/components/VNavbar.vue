@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id="navigation-container">
-        <img src="../assets/PicsArt_10-05-10.27.58.jpg" width="70" height="70">
+        <img src="../assets/PicsArt_11-21-05.50.00.jpg" width="70" height="70">
         <ul>
             <li><router-link to="/">Home</router-link></li>
             <li v-if="!this.$store.getters.isAuthenticated"><router-link to="/login">Login</router-link></li>
