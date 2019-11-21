@@ -24,7 +24,7 @@
   export default {
     name: "BookingPage",
     created() {
-      routesRepository.getSeatsForRoute(this.$route.query.startDate, this.$route.query.depDate, this.$route.query.arrDate, this.$route.query.routeId)
+      routesRepository.getSeatsForRoute(this.$route.query.date, this.$route.query.depDate, this.$route.query.arrDate, this.$route.query.routeId)
         .then( (response) => {
           this.variants = {};
 
