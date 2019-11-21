@@ -8,7 +8,7 @@
                 <th>Departure Date</th>
                 <th>To</th>
                 <th>Arrival Date</th>
-                <th v-if="this.$store.getters.isAuthenticated">Order</th>
+                <th>Order</th>
             </tr>
             <tr v-for="(routeInstance, i) in fromToRoutesList" :key="i">
                 <td>{{routeInstance.routeId}}</td>
@@ -17,7 +17,7 @@
                 <td>{{routeInstance.depDate}}</td>
                 <td>{{routeInstance.to.name}}</td>
                 <td>{{routeInstance.arrDate}}</td>
-                <td v-if="userAuthenticated"><router-link :to="{path: 'booking', query:
+                <td><router-link :to="{path: 'booking', query:
                 {
                 date: routeInstance.startDate,
                 from: routeInstance.from.id,
@@ -86,7 +86,7 @@
         color: black!important;
     }
     .btn-order{
-        border-color: white;
+        border-color: rgb(146, 166, 223);
         background-color: white;
     }
     .btn-order:hover{
