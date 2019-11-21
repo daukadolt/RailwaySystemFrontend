@@ -7,6 +7,7 @@
                 <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Stations</a>
                 <a v-on:click="activetab='5'" v-bind:class="[ activetab === '5' ? 'active' : '' ]">Create Routes</a>
                 <a v-on:click="activetab='6'" v-bind:class="[ activetab === '6' ? 'active' : '' ]">Cancel Routes</a>
+                <a v-on:click="activetab='7'" v-bind:class="[ activetab === '7' ? 'active' : '' ]">Logging</a>
             </div>
 
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -93,13 +94,19 @@
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+
+                <div v-if="activetab ==='7'" class="tabcontent">
+                <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div>
+                </div>
+
             </div>
          </div>
 </template>
 
 <script>
 import store from '../store';
-import { repositoryFactory } from "../api/repositoryFactory"
+import { repositoryFactory } from "../api/repositoryFactory";
+
 const employeesRepository = repositoryFactory.get("employees");
 let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
 let setNull = obj => setAll(obj, null);
@@ -139,8 +146,8 @@ let setNull = obj => setAll(obj, null);
                 ,
                 stationList:[
 
-]
-            }},
+],
+            msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,"            }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
