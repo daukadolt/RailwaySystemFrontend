@@ -100,11 +100,13 @@
                 <div v-if="activetab ==='7'" class="tabcontent">
                     Log recording
                     <div class="swit"><label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" @change="toggleLogging" v-model="loggerToggleValue">
                     <span class="slider round"></span>
-                    </label></div>
+                    </label>
+                    <button @click="fetchLoggerText">Update</button>
+                    </div>
 
-                    <textarea v-model="msg" class="textArea" placeholder="abc" disabled> </textarea>
+                    <textarea v-model="loggerLogs" class="textArea" placeholder="abc" disabled> </textarea>
                 <!-- <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div> -->
                 </div>
 
@@ -118,6 +120,7 @@ import { repositoryFactory } from "../api/repositoryFactory"
 import Multiselect from 'vue-multiselect'
 
 const employeesRepository = repositoryFactory.get("employees");
+const logsRepository = repositoryFactory.get("logs");
 let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
 let setNull = obj => setAll(obj, null);
 
@@ -133,7 +136,15 @@ let setNull = obj => setAll(obj, null);
                     this.stationList = response.data;
                     this.existingStations = [];
                     this.existingStations = response.data;
+                    return logsRepository.getLogs()
                 } )
+                .then( response => {
+                   this.loggerLogs = response.data;
+                   return employeesRepository.getCurrentLoggingValue()
+                })
+                .then( response => {
+                    this.loggerToggleValue = response.data;
+                });
         },
         data() {
             return {
@@ -161,7 +172,8 @@ let setNull = obj => setAll(obj, null);
                 ,
                 stationList:[],
                 existingStations: [{"id":1,"name":"First"},{"id":2,"name":"Second"},{"id":3,"name":"Third"}],
-                msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some "
+                loggerLogs: "",
+                loggerToggleValue: null
     }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
@@ -217,6 +229,16 @@ let setNull = obj => setAll(obj, null);
             },
 
             /* helper functions for multiselect */
+            toggleLogging() {
+                employeesRepository.toggleLoggingMode(this.loggerToggleValue);
+            },
+
+            fetchLoggerText() {
+                logsRepository.getLogs()
+                    .then(response => {
+                        this.loggerLogs = response.data;
+                    });
+            }
     }
     }  
 </script>
