@@ -1,13 +1,13 @@
 <template>
    
     <div class="container" > 
-        <div class="text" >Search the routes</div>
+        <div class="text" >SEARCH THE ROUTES</div>
         <form @submit.prevent="searchFromTo" class="form-inline"> 
-            <div>From</div>
+            <div>FROM</div>
             <autocompleteCities :items="this.$store.state.cities" v-model="fromCity" style="display:grid"/>
-            <div>To</div>
+            <div>TO</div>
             <autocompleteCities :items="this.$store.state.cities" v-model="toCity" style="display:grid"/>
-            <div style="margin-right:10px">Date</div>
+            <div style="margin-right:10px">DATE</div>
             <input type="date" v-model="date" class="date" required>
             <button class="btn">Search</button>
         </form>
@@ -48,14 +48,14 @@ export default {
         width: 60%;
         margin-bottom: 20px;
         margin-top:40px;
-        background: linear-gradient(to bottom right, rgb(146, 166, 223), #423563);
+        background: linear-gradient(to bottom right, rgb(96, 117, 175), #1f295e);
         border-radius: 20px;
         font-family: "Lucida Bright", Monaco, monospace;
-        color: black;
+        color: white;
         -webkit-box-shadow: -1px 6px 12px 0px rgba(50, 50, 50, 1);
         -moz-box-shadow:    -1px 6px 12px 0px rgba(50, 50, 50, 1);
         box-shadow:         -1px 6px 12px 0px rgba(50, 50, 50, 1);
-        
+        padding-bottom: 15px;
     }
     .text{
         font-family: "Lucida Bright", Monaco, monospace;
