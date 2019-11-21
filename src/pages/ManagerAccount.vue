@@ -53,16 +53,23 @@
                             <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
                                <tr class="secondtable">
                                     <td rowspan="2" width="7.23%">Station #{{index+1}}</td>
-                                    <td width="7%"><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
+                                    <td width="7%">
+                                        <!--<input placeholder="station id" v-model="newRouteData.stations[index].stationId" required>-->
+                                        <multiselect v-model="newRouteData.stations[index].stationDetails" :options="existingStations"  :custom-label="nameWithStation" placeholder="Select one" label="name" track-by="name" required/>
+                                    </td>
                                 </tr>
                             <tr>
-                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
+                                <td style="background-color:#888">
+                                    <input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>
+                                    <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
                             </tr>
                             </span>
                             <tr style="background-color: white">
                                 <td>Last station</td>
-                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
+                                <td width="7%">
+                                    <multiselect v-model="newRouteData.LastStation" :options="existingStations"  :custom-label="nameWithStation" placeholder="Select one" label="name" track-by="name" required/>
+                                </td>
                             </tr>
                         </table>
                            
@@ -107,7 +114,8 @@
 
 <script>
 import store from '../store';
-import { repositoryFactory } from "../api/repositoryFactory";
+import { repositoryFactory } from "../api/repositoryFactory"
+import Multiselect from 'vue-multiselect'
 
 const employeesRepository = repositoryFactory.get("employees");
 let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
@@ -115,11 +123,16 @@ let setNull = obj => setAll(obj, null);
 
     export default {
         name: "ManagerAccount",
+        components: {
+            Multiselect
+        },
         created() {
             employeesRepository.getStations()
                 .then( (response) => {
                     this.stationList = [];
-                    this.stationList = response.data
+                    this.stationList = response.data;
+                    this.existingStations = [];
+                    this.existingStations = response.data;
                 } )
         },
         data() {
@@ -132,7 +145,7 @@ let setNull = obj => setAll(obj, null);
                     seatNum:null,
                     dates: [null],
                     startTime:'',
-                    stations:[{stationId: null, duration: null}],
+                    stations:[{stationDetails: null, duration: null}],
                     LastStation:null,
                 },
                 cancelRouteData:{
@@ -146,10 +159,10 @@ let setNull = obj => setAll(obj, null);
                         employeeName:"SecondEmpl",
                         employeeStation:4}]
                 ,
-                stationList:[
-
-],
-            msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some " }},
+                stationList:[],
+                existingStations: [{"id":1,"name":"First"},{"id":2,"name":"Second"},{"id":3,"name":"Third"}],
+                msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some "
+    }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
@@ -166,12 +179,24 @@ let setNull = obj => setAll(obj, null);
                 this.newRouteData.stations.push({stationId: null, duration: null});
             },
             createRoute() {
+                this.newRouteData.stations = this.newRouteData.stations.map(chosenStation => {
+                    return {stationId: chosenStation.stationDetails.id, duration: chosenStation.duration };
+                });
+                this.newRouteData.LastStation = this.newRouteData.LastStation.id;
                 employeesRepository.createRoute(this.newRouteData)
                     .then(() => {
-                        setNull(this.newRouteData)
+                        this.newRouteData = {
+                            routeName:'',
+                            carNum:null,
+                            seatNum:null,
+                            dates: [null],
+                            startTime:'',
+                            stations:[{stationDetails: null, duration: null}],
+                            LastStation:null,
+                        }
                     }).catch(() => {
                         alert("create route not working")
-                    })
+                })
             },
             cancelRoute() {
                 employeesRepository.cancelRoute(this.cancelRouteData)
@@ -183,7 +208,15 @@ let setNull = obj => setAll(obj, null);
             },
             AdjustHours(employeeId){
                 employeesRepository.adjustHours(employeeId)
-            }
+            },
+
+            /* helper functions for multiselect */
+
+            nameWithStation(someObj) {
+                return `${someObj.name}`;
+            },
+
+            /* helper functions for multiselect */
     }
     }  
 </script>
