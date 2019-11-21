@@ -80,8 +80,16 @@ export default {
     updateEmployeeSalary(employeeId, newSalary) {
         console.log(employeeId, newSalary);
         return repository.put(`${resource}/salary/${employeeId}?salary=${newSalary}`, )
-    }
+    },
 
     /* <--- </ActuallyEmployees> ---> */
+
+    toggleLoggingMode(isOn) {
+        return repository.post(`${resource}/switchMode?isOn=${isOn}`)
+    },
+
+    getCurrentLoggingValue() {
+        return repository.get(`${resource}/switchMode`)
+    }
 
 }
