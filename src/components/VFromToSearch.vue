@@ -43,14 +43,19 @@ export default {
     .container{
         width: 60%;
         margin-bottom: 20px;
-        margin-top:20px;
-        background-color: rgba(99, 142, 182, 0.7);
+        margin-top:40px;
+        background-color: rgba(146, 166, 223, 0.85);
         border-radius: 20px;
+        font-family: "Lucida Bright", Monaco, monospace;
+        color: black;
+        -webkit-box-shadow: -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        -moz-box-shadow:    -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        box-shadow:         -1px 6px 12px 0px rgba(50, 50, 50, 1);
     }
     .text{
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-family: "Lucida Bright", Monaco, monospace;
         font-size: 50px;
-        color: white;
+        color: black;
     }
     .form-inline{
         display: inline-block;

@@ -15,8 +15,8 @@
           </th>
         </tr>
       </table>
-      <button @click="bookSelectedSeats">Book</button>
     </div>
+    <button @click="bookSelectedSeats">Book</button>
   </div>
 </template>
 <script>

@@ -1,6 +1,8 @@
 <template>
 <div>
+    <form @submit.prevent = "updateSchedule">
     <div class="tableFrom">
+        
         <table class="travel" id='createRoute'>
         <tr>
             <th>Week Day</th>
@@ -9,13 +11,17 @@
         </tr>
         <tr v-for="(employeeWorkDay , i) in employeeWorkDayList " :key="i">
             <td>{{employeeWorkDay.week_day}}</td>
-            <td><input v-model = "employeeWorkDay.start_hour" placeholder="start_hour" ></td>
-            <td><input v-model = "employeeWorkDay.end_hour" placeholder="end_hour" ></td>
+            <td><input type = "number" v-model = "employeeWorkDay.start_hour" min="0" :max="23" placeholder="start_hour" ></td>
+            <td><input type = "number" v-model = "employeeWorkDay.end_hour" min="0" :max="23" placeholder="end_hour" ></td>
         </tr>
     </table>
-    </div>
+     </div>
+    <button type = "submit">Change Schedule</button>
+   
+        </form>
     
-    <button @click="updateSchedule">Change Schedule</button>
+    
+    
     <br><br>
     <form @submit.prevent="">
         <div>

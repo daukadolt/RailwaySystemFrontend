@@ -28,7 +28,12 @@ export default {
         return repository.post(`${resource}/createTicket`, ticketData)
     },
     cancelTicket(ticketData){
-        return repository.post(`${resource}/deleteTicket`, ticketData)
+        return repository.delete(`${resource}/deleteTicket`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: qs.stringify(ticketData)
+        })
     },
 
     /* <--- </Tickets> ---> */

@@ -46,17 +46,13 @@
                                 <td width="7%"><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
                             </tr>
                             <tr v-for="(startDate, index) in newRouteData.dates" :key="'A,'+index">
-                                <td width="7%">dates when will take place</td>
+                                <td width="7%">Dates when will take place</td>
                                 <td width="7%" class="shift" ><input type="date" v-model="newRouteData.dates[index]" required> <div style="text-align: right"><button @click="addNewStartDate" class="btn">Add new Date</button></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="7%">start time</td>
+                                <td width="7%">Start time</td>
                                 <td width="7%"><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
-                            </tr>
-                            <tr style="background-color: white">
-                                <td>last station</td>
-                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
                             </tr>
                             <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
                                <tr class="secondtable">
@@ -66,6 +62,10 @@
                             <tr>
 <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
+                            </tr>
+                            <tr style="background-color: white">
+                                <td>Last station</td>
+                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
                             </tr>
                             </span>
                         </table>
@@ -161,7 +161,7 @@ let setNull = obj => setAll(obj, null);
                     .then(() => {
                         setNull(this.newRouteData)
                     }).catch(() => {
-                        setNull(this.newRouteData)
+                        alert("create route not working")
                     })
             },
             cancelRoute() {
@@ -169,7 +169,7 @@ let setNull = obj => setAll(obj, null);
                     .then(()=>{
                         setNull(this.cancelRouteData)
                     }).catch(()=>{
-                        setNull(this.cancelRouteData)
+                        alert("cancel route not working")
                     })
             },
             AdjustHours(employeeId){

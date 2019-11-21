@@ -94,6 +94,8 @@
 <script>
 import { repositoryFactory } from "../api/repositoryFactory"
 const employeesRepository = repositoryFactory.get("employees");
+let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
+let setNull = obj => setAll(obj, null);
 
     export default {
         name: "AgentAccount",
@@ -127,51 +129,17 @@ const employeesRepository = repositoryFactory.get("employees");
             createTicket() {
                 employeesRepository.createTicket(this.newTicketData)
                     .then(() => {
-                        this.newTicketData = {
-                            route_id:null,
-                            date:null,
-                            to:null,
-                            from:null,
-                            email:null,
-                            phone:null,
-                            first_name:null,
-                            last_name:null,
-                            carriage_num:null,
-                            train_id:null,
-                            seat_num:null,
-                        }
-                    }).then(()=>{
-                        alert 
+                        setNull(this.newTicketData)
                     }).catch(() => {
-                        this.newTicketData = {                  
-                            route_id:null,
-                            date:null,
-                            to:null,
-                            from:null,
-                            email:null,
-                            phone:null,
-                            first_name:null,
-                            last_name:null,
-                            carriage_num:null,
-                            train_id:null,
-                            seat_num:null,                
-                        }
+                        alert("create ticket not working")
                     })
             },
             cancelTicket() {
-                employeesRepository.cancelRoute(this.cancelTicketData)
+                employeesRepository.cancelTicket(this.cancelTicketData)
                     .then(()=>{
-                        this.cancelTicketData={
-                            ticketId:null,
-                            trainId:null,
-                            routeId:null,
-                        }
+                        setNull(this.cancelTicketData)
                     }).catch(()=>{
-                        this.cancelTicketData={
-                            ticketId:null,
-                            trainId:null,
-                            routeId:null,   
-                        }
+                        alert("cancel ticket not working")
                     })
             },
             changeTicket(){
