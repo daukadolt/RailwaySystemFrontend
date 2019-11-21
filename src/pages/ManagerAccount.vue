@@ -91,7 +91,14 @@
                 </div>
 
                 <div v-if="activetab ==='7'" class="tabcontent">
-                <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div>
+                    Log recording
+                    <div class="swit"><label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                    </label></div>
+
+                    <textarea v-model="msg" class="textArea" placeholder="abc" disabled> </textarea>
+                <!-- <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div> -->
                 </div>
 
             </div>
@@ -142,7 +149,7 @@ let setNull = obj => setAll(obj, null);
                 stationList:[
 
 ],
-            msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,"            }},
+            msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some " }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
@@ -232,6 +239,24 @@ let setNull = obj => setAll(obj, null);
     }
     span{
         display: block ruby;
+    }
+    .textArea{
+        -webkit-box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        -moz-box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        padding-left: 12px;
+        padding-top: 12px;
+        padding-right: 12px;
+        padding-bottom: 12px;
+        height: 400px; 
+        width: 85%; 
+        border: 1px solid rgb(146, 166, 223);
+        }
+    .textArea:disabled{
+        background-color: white;
+        font-size: 18px;
+        color: black;
+        margin-top: 3%
     }
 
 /* Style the tabs */
@@ -358,4 +383,65 @@ let setNull = obj => setAll(obj, null);
     .shift{
         margin-left: 10px;
     }
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    }
+
+    .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    input:checked + .slider {
+    background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    }
+
+    .slider.round:before {
+    border-radius: 50%;
+    }
+
+
 </style>
