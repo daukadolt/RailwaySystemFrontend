@@ -58,7 +58,7 @@ export default {
     .navigation-bar li a {
     color: black;
     font-size: 16px;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: "Lucida Bright", Monaco, monospace;
     text-decoration: none;
     line-height: 70px;
     padding: 5px 15px;
