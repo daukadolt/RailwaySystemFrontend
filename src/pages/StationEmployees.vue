@@ -2,7 +2,7 @@
     <div>
 
         <div class="tabs">
-            <div style="font-size:50px">Station #{{this.$route.query.stationId}}</div>
+            <div class="heading">Station #{{this.$route.query.stationId}}</div>
             <table class="travel" id='Station Employees'>
                 <tr>
                     <th>Employee Id</th>
@@ -47,6 +47,22 @@ export default {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+    }
+    .heading{
+        font-size:50px;
+        /* background:rgba(146, 166, 223, 0.9); */
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 40%;
+        margin-left: 30%; 
+        border-radius: 0.9em;
+        background: linear-gradient(to bottom right, rgb(125, 144, 201), #504eaa);
+        border-radius: 20px;
+        font-family: "Lucida Bright", Monaco, monospace;
+        color: white;
+        -webkit-box-shadow: -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        -moz-box-shadow:    -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        box-shadow:         -1px 6px 12px 0px rgba(50, 50, 50, 1);
     }
     .container {
         max-width: 1000px;

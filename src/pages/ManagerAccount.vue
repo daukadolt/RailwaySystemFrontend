@@ -68,7 +68,7 @@
                             </tr>
                             </span>
                             <tr style="background-color: white">
-                                <td>Last station</td>
+                                <td width="7.23%">Last station</td>
                                 <td width="7%">
                                     <multiselect v-model="newRouteData.LastStation" :options="existingStations"  :custom-label="nameWithStation" placeholder="Select one" label="name" track-by="name" required/>
                                 </td>
