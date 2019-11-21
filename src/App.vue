@@ -42,5 +42,6 @@ body {
   background-attachment: fixed;
   background-position: absolute;
   margin:0;
+  overflow-y: auto;
 }
 </style>

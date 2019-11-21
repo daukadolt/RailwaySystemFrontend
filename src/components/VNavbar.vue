@@ -8,7 +8,7 @@
             <li><router-link to="/">Home</router-link></li>
             <li v-if="!this.$store.getters.isAuthenticated"><router-link to="/login">Login</router-link></li>
             <li v-else><router-link to="/account"><button class="btn"><i class="fa fa-home"></i>{{this.$store.getters.getFullName}}</button></router-link></li>
-            <li v-if="this.$store.getters.isAuthenticated" ><button @click="logout">Logout</button></li>
+            <li v-if="this.$store.getters.isAuthenticated" ><button @click="logout" class="logout">Logout</button></li>
         </ul>
     </div>
     </div>
@@ -39,7 +39,10 @@ export default {
     background-color: #f8f9fa80;
     padding-right: 100px;
     }
-
+    .logout{
+    background-color: transparent;
+    border-color:transparent;
+    }
     .navigation-bar {
     height: 70px;
     width: 100%;
