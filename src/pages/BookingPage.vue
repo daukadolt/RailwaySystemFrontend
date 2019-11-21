@@ -2,7 +2,7 @@
   <div>
     <!-- <VMovingTrain/> -->
     queryParams {{this.$route.query}}
-    chosenSeats {{this.chosenSeats}}
+    chosenSeats {{this.chosenSeats}}<div class="move">
     <div v-for="(arrayOfSeats, carriageNumber) in variants" v-bind:key="'Carriage ' + carriageNumber">
       <button>Carriage #{{ carriageNumber }}</button>
       <table>
@@ -14,9 +14,10 @@
             {{seatObj['seatNum']}}
           </th>
         </tr>
-      </table>
+
+      </table></div>
+      <button @click="bookSelectedSeats" class="book">Book</button>
     </div>
-    <button @click="bookSelectedSeats">Book</button>
   </div>
 </template>
 <script>
@@ -72,4 +73,53 @@
 </script>
 <style lang="scss" scoped>
   @import "../assets/SeatReserve";
+  button{
+  display: inline-block;
+    padding: 0.3em -1.3em;
+    width:50%;
+-webkit-box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
+-moz-box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
+box-shadow: 5px 50px 64px -20px rgba(40,77,84,1);
+    border-radius: 0.7em;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 100;
+    color: #FFFFFF;
+    background:linear-gradient(to bottom right, rgb(146, 166, 223), #423563);
+    text-align: center;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    font-size: 21px;
+}
+
+button:hover {
+background-color : #214b64;
+}
+.book{
+   background: linear-gradient(to bottom right, rgb(3, 151, 15), #72ff20);
+   width: 10%;
+   
+text-align: center;
+}
+.move{
+ -webkit-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
+-moz-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
+box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
+background-color: white; 
+width: 70%;
+height: 70%;
+margin-left: 17%;
+border-radius: 0.9em;
+}
+@media all and (max-width:30em){
+.button{
+display:block;
+margin:0.2em auto;
+width:30% ;
+text-align: center;
+}
+
+}
 </style>
