@@ -61,7 +61,7 @@
                             </tr>
                             </span>
                             <tr style="background-color: white">
-                                <td>Last station</td>
+                                <td width="7.23%">Last station</td>
                                 <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
                             </tr>
                         </table>
