@@ -71,7 +71,8 @@
                             </span>
                             <tr style="background-color: white">
                                 <td>Last station</td>
-                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required>
+                                <td width="7%">
+                                    <multiselect v-model="newRouteData.LastStation" :options="existingStations"  :custom-label="nameWithStation" placeholder="Select one" label="name" track-by="name" required/>
                                 </td>
                             </tr>
                         </table>
@@ -121,7 +122,9 @@ let setNull = obj => setAll(obj, null);
             employeesRepository.getStations()
                 .then( (response) => {
                     this.stationList = [];
-                    this.stationList = response.data
+                    this.stationList = response.data;
+                    this.existingStations = [];
+                    this.existingStations = response.data;
                 } )
         },
         data() {
@@ -170,6 +173,7 @@ let setNull = obj => setAll(obj, null);
                 this.newRouteData.stations = this.newRouteData.stations.map(chosenStation => {
                     return {stationId: chosenStation.stationDetails.id, duration: chosenStation.duration };
                 });
+                this.newRouteData.LastStation = this.newRouteData.LastStation.id;
                 employeesRepository.createRoute(this.newRouteData)
                     .then(() => {
                         this.newRouteData = {
