@@ -51,8 +51,16 @@ export default {
     /* <--- <ActuallyEmployees> ---> */
 
     getEmployeeSchedule(employeeId) {
-        return repository.get(`${resource}/schedule`, {
+        return repository.get(`${resource}/${employeeId}`, {
             params: {
+                e_id: employeeId
+            }
+        })
+    },
+
+    getEmployeeInformation(employeeId) {
+        return repository.get(`${resource}/${employeeId}`,{
+            params:{
                 e_id: employeeId
             }
         })
