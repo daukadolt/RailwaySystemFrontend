@@ -60,14 +60,14 @@
                                     <td width="7%"><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
                                 </tr>
                             <tr>
-<td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
+                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
                             </tr>
+                            </span>
                             <tr style="background-color: white">
                                 <td>Last station</td>
                                 <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
                             </tr>
-                            </span>
                         </table>
                            
                         </div>
