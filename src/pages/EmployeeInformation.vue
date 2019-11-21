@@ -17,7 +17,7 @@
     
     <button @click="updateSchedule">Change Schedule</button>
     <br><br>
-    <form @submit.prevent="">
+    <form @submit.prevent="updateSalary">
         <div>
         <table class="travel">
             <tr>
@@ -43,7 +43,7 @@ const employeesRepository = repositoryFactory.get("employees");
                 .then( response => {
                     this.employeeWorkDayList = response.data;
                     return employeesRepository.getEmployeeInformation(this.$route.query.employeeId);
-                } ).then(response=>{
+                }).then(response=>{
                     console.log("salary information");
                     console.log(response);
                     this.employeeData=response.data;
@@ -52,13 +52,24 @@ const employeesRepository = repositoryFactory.get("employees");
         },
         data() {
             return {
-                employeeData: null,
+                employeeData: {
+                    employeeId:1,
+                    salary:500,
+                    stationId:1,
+                    email:"daulet.amirkhanov@nu.edu.kz",
+                    password:"dauka",
+                    isManager:false,
+                    isAgent:false
+                },
                 employeeWorkDayList: []
             }
         },
         computed: {
         },
         methods: {
+            updateSalary(){
+                employeesRepository.updateEmployeeSalary(this.$route.query.employeeId, this.employeeData.salary);
+            },
             updateSchedule() {
                 let updatedSchedule = [];
                 this.employeeWorkDayList.forEach(dayRecord => {
