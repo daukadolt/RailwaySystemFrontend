@@ -23,17 +23,19 @@
     
     
     <br><br>
-    <div>
+    <form @submit.prevent="">
+        <div>
         <table class="travel">
             <tr>
                 <th>Salary</th>
-                <th><input type = "number" min="0" placeholder= "salary" v-model = "employee.salary"></th>
+                <th><input type = "number" min="0" placeholder= "salary" v-model = "employeeData.salary"></th>
             </tr>
         </table>
         
 
     </div>
     <button type="submit">Update Salary</button>
+    </form>
 </div>
 </template>
 
@@ -46,13 +48,17 @@ const employeesRepository = repositoryFactory.get("employees");
             employeesRepository.getEmployeeSchedule(this.$route.query.employeeId)
                 .then( response => {
                     this.employeeWorkDayList = response.data;
-                } );
+                    return employeesRepository.getEmployeeInformation(this.$route.query.employeeId);
+                } ).then(response=>{
+                    console.log("salary information");
+                    console.log(response);
+                    this.employeeData=response.data;
+                    
+                });
         },
         data() {
             return {
-                employee:{
-                    salary:100
-                },
+                employeeData: null,
                 employeeWorkDayList: []
             }
         },
