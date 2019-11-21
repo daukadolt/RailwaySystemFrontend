@@ -9,7 +9,7 @@
                         <div class="header">treenatree</div>
                         <div class="info passenger">
                             <div class="info__item">Document Number</div>
-                            <input class="input_field" type="number" value=""
+                            <input class="input_field" type="number" v-model="ticketList[i].documentID"
                                    placeholder="Document Number" autocomplete="off" required>
                         </div>
                         <div class="info departure">
@@ -55,6 +55,8 @@
                 <br><br>
             </div>
             <input class="input_field1" type="email" v-model="email" placeholder="Please, enter your email" autocomplete="off" required>
+            <input class="input_field1" type="text" v-model="firstName" placeholder="first name" autocomplete="off" required>
+            <input class="input_field1" type="text" v-model="lastName" placeholder="last name" autocomplete="off" required>
             <input class="input_field1" v-model="phone" placeholder="Please, enter your phone number" autocomplete="off" required>
             <button class="button" type="submit">Buy ticket</button>
         </form>
@@ -81,6 +83,7 @@ const routesRepository = repositoryFactory.get("routes");
             this.to = passedData.to;
             this.trainId = passedData.trainId;
             this.ticketList = [];
+            this.date = passedData.date;
             this.chosenSeats.forEach(seat => {
                 this.ticketList.push({
                     date: passedData.date,
@@ -89,7 +92,8 @@ const routesRepository = repositoryFactory.get("routes");
                     seatNum: seat.seatNum,
                     ticketId: 'randomly generated',
                     firstName: null,
-                    lastName: null
+                    lastName: null,
+                    documentID: null
                 });
             })
         }
@@ -97,48 +101,48 @@ const routesRepository = repositoryFactory.get("routes");
     data() {
         //{ "startDate": "2019-12-01", "depDate": "2019-12-01 01:22:22", "arrDate": "2019-12-02 22:22:22", "routeId": 4, "chosenSeats": [ { "seatNum": 2, "carriageNum": "1" }, { "seatNum": 3, "carriageNum": "1" } ] }
       return {
-        ticketList:[
-            {date:"2019-10-11",
-            time:"12:00",
-            carriageNum:1,
-            seat:34,
-            ticketId:1
-
-            },{date:"2019-10-12",
-            time:"17:00",
-            carriageNum:5,
-            seat:37,
-            ticketId:4
-
-            }
-          ],
+        ticketList:[],
         routeId: null,
         trainId: null,
-        chosenSeats: null,
+        to: null,
+        from: null,
         email: null,
         phone: null,
-        from: null,
-        to: null
-
+        firstName: null,
+        lastName: null,
+        chosenSeats: null
       }
     },
     methods: {
         bookTickets() {
-            this.ticketList.forEach(ticket => {
-                routesRepository.bookTicket({
-                    route_id: this.routeId,
-                    date: ticket.date,
-                    to: this.to,
-                    from: this.from,
-                    email: this.email,
-                    phone: this.phone,
-                    first_name: ticket.firstName,
-                    last_name: ticket.lastName,
-                    carriage_num: ticket.carriageNum,
-                    train_id: this.trainId,
-                    seat_num: ticket.seatNum
-                })
+            let passengersData = [];
+            this.ticketList.forEach(seat => {
+                passengersData.push({
+                    carriage_num: seat.carriageNum,
+                    seat_num: seat.seatNum,
+                    first_name: seat.firstName,
+                    last_name: seat.lastName,
+                    documentID: seat.documentID
+                });
             });
+            routesRepository.bookTicket({
+                route_id: this.routeId,
+                date: this.date,
+                train_id: this.trainId,
+                to: this.to,
+                from: this.from,
+                email: this.email,
+                phone: this.phone,
+                first_name: this.firstName,
+                last_name: this.lastName,
+                passengers: passengersData
+            })
+                .then(() => {
+                    alert("Tickets have been successfully purchased! Please check your account");
+                })
+                .catch(() => {
+                    alert("error!");
+                })
         }
     },
     components: {
