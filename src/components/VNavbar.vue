@@ -8,6 +8,7 @@
             <li><router-link to="/">Home</router-link></li>
             <li v-if="!this.$store.getters.isAuthenticated"><router-link to="/login">Login</router-link></li>
             <li v-else><router-link to="/account"><button class="btn"><i class="fa fa-home"></i>{{this.$store.getters.getFullName}}</button></router-link></li>
+            <li v-if="this.$store.getters.isAuthenticated" ><button @click="logout">Logout</button></li>
         </ul>
     </div>
     </div>
@@ -20,6 +21,12 @@ export default {
         return {
             
         }
+    }, 
+    methods: {
+        logout() {
+                this.$store.commit('setPassenger', null);
+                this.$router.push("/");
+            }
     }
 }
 </script>
