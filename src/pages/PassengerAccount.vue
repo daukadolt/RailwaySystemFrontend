@@ -33,6 +33,9 @@
                                 <th>Route name</th>
                                 <th>Carriage number</th>
                                 <th>Seat number</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Document Number</th>
                             </tr>
                             <tr v-for="(travel, index) in pastTravels" :key="'past travel ' + index">
                                 <td>{{travel.fromStation}}</td>
@@ -42,6 +45,9 @@
                                 <td>{{travel.routeName}}</td>
                                 <td>{{travel.carriageNum}}</td>
                                 <td>{{travel.seat}}</td>
+                                <td>{{travel.firstName}}</td>
+                                <td>{{travel.lastName}}</td>
+                                <td>{{travel.documentID}}</td>
                             </tr>
                         </table>
                     </div>  
@@ -57,6 +63,9 @@
                                 <th>Route name</th>
                                 <th>Carriage number</th>
                                 <th>Seat number</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Document Number</th>
                             </tr>
                             <tr v-for="(travel, index) in futureTravels" :key="'future travel ' + index">
                                 <td>{{travel.fromStation}}</td>
@@ -66,6 +75,9 @@
                                 <td>{{travel.routeName}}</td>
                                 <td>{{travel.carriageNum}}</td>
                                 <td>{{travel.seat}}</td>
+                                <td>{{travel.firstName}}</td>
+                                <td>{{travel.lastName}}</td>
+                                <td>{{travel.documentID}}</td>
                             </tr>
                         </table>
                     </div>
@@ -191,7 +203,7 @@ const passengersRepository = repositoryFactory.get("passengers");
         height: 173px;
         width: 220px;
         background: #D3EAFB;
-        margin-left: 60px;
+        margin-left: 115%;
         border: 1px solid #ccc;
         border-radius: 10px;
     }

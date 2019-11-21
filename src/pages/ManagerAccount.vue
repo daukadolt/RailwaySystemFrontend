@@ -1,4 +1,3 @@
-
 <template>
     <div>
         <div id="tabs" class="container">
@@ -7,6 +6,7 @@
                 <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Stations</a>
                 <a v-on:click="activetab='5'" v-bind:class="[ activetab === '5' ? 'active' : '' ]">Create Routes</a>
                 <a v-on:click="activetab='6'" v-bind:class="[ activetab === '6' ? 'active' : '' ]">Cancel Routes</a>
+                <a v-on:click="activetab='7'" v-bind:class="[ activetab === '7' ? 'active' : '' ]">Logging</a>
             </div>
 
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -24,10 +24,6 @@
                     </table>
                 </div>
             </div>
-                
-
-
-
             <div v-if="activetab ==='5'" class="tabcontent">
                 {{ newRouteData }}
                 <form @submit.prevent="createRoute">
@@ -100,6 +96,18 @@
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+
+                <div v-if="activetab ==='7'" class="tabcontent">
+                    Log recording
+                    <div class="swit"><label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                    </label></div>
+
+                    <textarea v-model="msg" class="textArea" placeholder="abc" disabled> </textarea>
+                <!-- <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div> -->
+                </div>
+
             </div>
          </div>
 </template>
@@ -152,8 +160,9 @@ let setNull = obj => setAll(obj, null);
                         employeeStation:4}]
                 ,
                 stationList:[],
-                existingStations: [{"id":1,"name":"First"},{"id":2,"name":"Second"},{"id":3,"name":"Third"}]
-            }},
+                existingStations: [{"id":1,"name":"First"},{"id":2,"name":"Second"},{"id":3,"name":"Third"}],
+                msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some "
+    }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
@@ -221,9 +230,37 @@ let setNull = obj => setAll(obj, null);
         margin: 0;
         padding: 0;
     }
+    .without::-webkit-datetime-edit-ampm-field {
+   display: none;
+ }
+ input[type=time]::-webkit-clear-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   margin: 0; 
+ }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   appearance: none;
+   margin: 0; 
+  }
     .btn:hover{
         columns: white;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .without_ampm::-webkit-datetime-edit-ampm-field {
+        display: none;
+    }
+    input[type=time]::-webkit-clear-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance:none;
+        appearance: none;
+        margin: -10px; 
     }
     .container {
         max-width: 1000px;
@@ -235,6 +272,24 @@ let setNull = obj => setAll(obj, null);
     }
     span{
         display: block ruby;
+    }
+    .textArea{
+        -webkit-box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        -moz-box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        box-shadow: -1px 17px 36px 0px rgba(77,110,176,1);
+        padding-left: 12px;
+        padding-top: 12px;
+        padding-right: 12px;
+        padding-bottom: 12px;
+        height: 400px; 
+        width: 85%; 
+        border: 1px solid rgb(146, 166, 223);
+        }
+    .textArea:disabled{
+        background-color: white;
+        font-size: 18px;
+        color: black;
+        margin-top: 3%
     }
 
 /* Style the tabs */
@@ -361,4 +416,65 @@ let setNull = obj => setAll(obj, null);
     .shift{
         margin-left: 10px;
     }
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    }
+
+    .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    input:checked + .slider {
+    background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    }
+
+    .slider.round:before {
+    border-radius: 50%;
+    }
+
+
 </style>

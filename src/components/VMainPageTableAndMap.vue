@@ -1,4 +1,6 @@
 <template>
+<div>
+<VMovingTrain/>
 <div class="tableFrom">
     <!--[ { "routeId": 2, "routeName": "Aлматы - Павлодар", "startDate": "2019-10-18", "stationId": 3, "stationName": "Скриптонит", "arrDate": "2019-10-20 20:00:00" } ]-->
     <table>
@@ -16,13 +18,15 @@
         </tr>
     </table>
 </div>
+</div>
 </template>
 
 <script>
-
+import VMovingTrain from "./VMovingTrain.vue";
     export default {
         name: "VMainPageTableAndMap",
         props: ["currentCityRoutesList"],
+        components: VMovingTrain,
         data() {
             return {}
         }
@@ -37,8 +41,7 @@
         border-collapse: collapse;
         background-color: transparent;
         padding:8px;
-        font-family: "Lucida Bright", Monaco, monospace!important;
-        color: black!important;
+       
         -webkit-box-shadow: -1px 6px 12px 0px rgba(50, 50, 50, 1);
         -moz-box-shadow:    -1px 6px 12px 0px rgba(50, 50, 50, 1);
         box-shadow:         -1px 6px 12px 0px rgba(50, 50, 50, 1);
@@ -49,8 +52,7 @@
         border: 1px solid #dddddd;
         padding: 8px;
         background-color: white;
-        font-family: "Lucida Bright", Monaco, monospace!important;
-        color: black!important;
+ 
     }
 
     tr {
@@ -60,8 +62,7 @@
     th{
         padding:8px;
         background-color: rgb(146, 166, 223);
-     font-family: "Lucida Bright", Monaco, monospace!important;
-        color: black!important;
+
         
     }
     th:first-child{
