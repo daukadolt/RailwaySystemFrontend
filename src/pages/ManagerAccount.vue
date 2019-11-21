@@ -44,6 +44,7 @@
                             <tr v-for="(startDate, index) in newRouteData.dates" :key="'A,'+index">
                                 <td width="7%">Dates when will take place</td>
                                 <td width="7%" class="shift" ><input type="date" v-model="newRouteData.dates[index]" required> <div style="text-align: right"><button @click="addNewStartDate" class="btn">Add new Date</button></div>
+                                <div v-if="index>0" style="text-align: right"><button @click="removeStartDate(index)" class="btn">Remove Date</button></div>
                                 </td>
                             </tr>
                             <tr>
@@ -62,6 +63,7 @@
                                 <td style="background-color:#888">
                                     <input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>
                                     <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
+                                    <div v-if="index>0" style="text-align: right"><button type="submit" @click="removeStation(index)" class="btn">Remove station</button></div>
                             </td>
                             </tr>
                             </span>
@@ -189,6 +191,12 @@ let setNull = obj => setAll(obj, null);
             },
             addNewStation() {
                 this.newRouteData.stations.push({stationId: null, duration: null});
+            },
+            removeStation(index){
+                this.newRouteData.stations.splice(index,1);
+            },
+            removeStartDate(index){
+                this.newRouteData.dates.splice(index,1);
             },
             createRoute() {
                 this.newRouteData.stations = this.newRouteData.stations.map(chosenStation => {
