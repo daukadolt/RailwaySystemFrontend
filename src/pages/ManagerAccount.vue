@@ -6,6 +6,7 @@
                 <a v-on:click="activetab='2'" v-bind:class="[ activetab === '2' ? 'active' : '' ]">Stations</a>
                 <a v-on:click="activetab='5'" v-bind:class="[ activetab === '5' ? 'active' : '' ]">Create Routes</a>
                 <a v-on:click="activetab='6'" v-bind:class="[ activetab === '6' ? 'active' : '' ]">Cancel Routes</a>
+                <a v-on:click="activetab='7'" v-bind:class="[ activetab === '7' ? 'active' : '' ]">Logging</a>
             </div>
 
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -41,17 +42,13 @@
                                 <td width="7%"><input placeholder="seat number" v-model="newRouteData.seatNum" required></td>
                             </tr>
                             <tr v-for="(startDate, index) in newRouteData.dates" :key="'A,'+index">
-                                <td width="7%">dates when will take place</td>
+                                <td width="7%">Dates when will take place</td>
                                 <td width="7%" class="shift" ><input type="date" v-model="newRouteData.dates[index]" required> <div style="text-align: right"><button @click="addNewStartDate" class="btn">Add new Date</button></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="7%">start time</td>
-                                <td width="7%"><input class="without" step="1" type="time" ng-model="endTime" v-model="newRouteData.startTime" required></td>
-                            </tr>
-                            <tr style="background-color: white">
-                                <td>last station</td>
-                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
+                                <td width="7%">Start time</td>
+                                <td width="7%"><input id="appt-time" type="time" step="2" v-model="newRouteData.startTime" required></td>
                             </tr>
                             <span v-for="(station, index) in newRouteData.stations" :key="index" style="display:box; margin-left=30%"> 
                                <tr class="secondtable">
@@ -59,10 +56,14 @@
                                     <td width="7%"><input placeholder="station id" v-model="newRouteData.stations[index].stationId" required></td>
                                 </tr>
                             <tr>
-                                <td><input class="without" step="1" type="time" ng-model="endTime" v-model="newRouteData.stations[index].duration" required><div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
+                                <td style="background-color:#888"><input id="appt-time" type="time" step="2" v-model="newRouteData.stations[index].duration" required>   <div style="text-align: right"><button @click="addNewStation" class="btn">Add new station</button></div>
                             </td>
                             </tr>
                             </span>
+                            <tr style="background-color: white">
+                                <td>Last station</td>
+                                <td width="7%"><input placeholder="last station id" v-model="newRouteData.LastStation" required></td>
+                            </tr>
                         </table>
                            
                         </div>
@@ -88,13 +89,19 @@
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+
+                <div v-if="activetab ==='7'" class="tabcontent">
+                <div class = "logging_m" style="overflow: scroll; height: 400px">Message: {{ msg }}</div>
+                </div>
+
             </div>
          </div>
 </template>
 
 <script>
 import store from '../store';
-import { repositoryFactory } from "../api/repositoryFactory"
+import { repositoryFactory } from "../api/repositoryFactory";
+
 const employeesRepository = repositoryFactory.get("employees");
 let setAll = (obj, val) => Object.keys(obj).forEach(k => obj[k] = val);
 let setNull = obj => setAll(obj, null);
@@ -134,8 +141,8 @@ let setNull = obj => setAll(obj, null);
                 ,
                 stationList:[
 
-]
-            }},
+],
+            msg: "For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war, Some haunted by the ghosts they have deposed; Some poison’d by their wives:  some sleeping kill’d;  All murder’d: for within the hollow crown, For God’s sake, let us sit upon the ground, And tell sad stories of the death of kings; How some have been deposed; some slain in war,"            }},
         beforeRouteEnter(to, from, next) {
             next(vm => vm.setPassenger(store.state.passenger))
         },
@@ -156,7 +163,7 @@ let setNull = obj => setAll(obj, null);
                     .then(() => {
                         setNull(this.newRouteData)
                     }).catch(() => {
-                        setNull(this.newRouteData)
+                        alert("create route not working")
                     })
             },
             cancelRoute() {
@@ -164,7 +171,7 @@ let setNull = obj => setAll(obj, null);
                     .then(()=>{
                         setNull(this.cancelRouteData)
                     }).catch(()=>{
-                        setNull(this.cancelRouteData)
+                        alert("cancel route not working")
                     })
             },
             AdjustHours(employeeId){

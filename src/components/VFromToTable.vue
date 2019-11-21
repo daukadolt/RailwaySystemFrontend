@@ -49,6 +49,8 @@
         display: inline;
         border-collapse: collapse;
         background-color: transparent;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
     }
 
     td{
@@ -56,23 +58,32 @@
         border: 1px solid #dddddd;
         padding: 8px;
         background-color: white;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
     }
 
     tr {
         background-color:transparent;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
     }
     th{
         background-color: rgb(146, 166, 223);
-        color: white;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
         padding:8px;
     }
     th:first-child{
         background-color: rgb(146, 166, 223);
         border-top-left-radius: 10px;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
     }
     th:last-child{
         background-color: rgb(146, 166, 223);
         border-top-right-radius: 10px;
+        font-family: "Lucida Bright", Monaco, monospace!important;
+        color: black!important;
     }
     .btn-order{
         border-color: white;
