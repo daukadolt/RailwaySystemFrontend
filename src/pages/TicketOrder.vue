@@ -145,7 +145,6 @@ const routesRepository = repositoryFactory.get("routes");
                 .catch(() => {
                     alert("error!");
                 });
-            this.$emit("toggleLoadingSpinner", false);
         }
     },
     components: {

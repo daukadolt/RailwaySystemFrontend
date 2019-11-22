@@ -66,7 +66,6 @@ export default {
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
-                this.$emit("toggleLoadingSpinner", false);
             },
             signUpUser() {
                 this.$emit("toggleLoadingSpinner", true);
@@ -77,7 +76,6 @@ export default {
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
-                this.$emit("toggleLoadingSpinner", false);
             },
             authenticateUser(passengerData) {
                 this.$emit("toggleLoadingSpinner", false);
