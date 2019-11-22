@@ -87,7 +87,7 @@ const routesRepository = repositoryFactory.get("routes");
             this.chosenSeats.forEach(seat => {
                 this.ticketList.push({
                     date: passedData.date,
-                    time: 'something',
+                    time: passedData.depDate.split(" ")[1],
                     carriageNum: seat.carriageNum,
                     seatNum: seat.seatNum,
                     ticketId: 'randomly generated',
