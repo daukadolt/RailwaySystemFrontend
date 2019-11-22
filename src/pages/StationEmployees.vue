@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <router-link :to="{path: 'manager_account'}"><button>Go Back</button></router-link>
         <div class="tabs">
             <div class="heading">Station #{{this.$route.query.stationId}}</div>
             <table class="travel" id='Station Employees'>
