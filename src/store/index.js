@@ -43,6 +43,15 @@ const store = new Vuex.Store({
         },
         getEmail(store) {
             return store.passenger !== null ? store.passenger.email : '';
+        },
+        isEmployeeAuthenticated(store) {
+            return store.employee !== null;
+        },
+        isEmployeeManager(store) {
+            return store.employee !== null ? store.employee.isManager : false;
+        },
+        isEmployeeAgent(store) {
+            return store.employee !== null ? store.employee.isAgent : false;
         }
     }
 });

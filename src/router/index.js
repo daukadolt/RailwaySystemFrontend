@@ -16,7 +16,10 @@ import TicketOrder from "../pages/TicketOrder.vue";
 
 /* Middleware */
 import log from "../middleware/log"
-//simport auth from "../middleware/auth"
+import passengerAuth from "../middleware/passengerAuth"
+import employeeAuth from "../middleware/employeeAuth"
+import agentAuth from "../middleware/agentAuth"
+import managerAuth from "../middleware/managerAuth"
 /* Middleware */
 
 /* Store */
@@ -30,11 +33,11 @@ const router = new VueRouter({
     routes: [
         {path: '/', component: Index, meta: {middleware: log}},
         {path: '/login', component: PassengerLogin},
-        {path: '/account', component: PassengerAccount}, //meta: {middleware: auth}},
-        {path: '/manager_account', component: ManagerAccount},
+        {path: '/account', component: PassengerAccount, meta: {middleware: passengerAuth}},
+        {path: '/manager_account', component: ManagerAccount, meta: {middleware: [employeeAuth, managerAuth]}},
         {path: '/booking', component: BookingPage},
         {path: '/emp_login', component: EmployeeLogin},
-        {path: '/agent_account', component: AgentAccount},
+        {path: '/agent_account', component: AgentAccount, meta: {middleware: [employeeAuth, agentAuth]}},
         {path: '/station_employees', component: StationEmployees},
         {path: '/emp_info' , component: EmployeeInformation},
         {path: '/buyticket', component: TicketOrder},
