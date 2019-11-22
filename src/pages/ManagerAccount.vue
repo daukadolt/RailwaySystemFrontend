@@ -232,8 +232,8 @@ let setNull = obj => setAll(obj, null);
 
             /* helper functions for multiselect */
 
-            nameWithStation(someObj) {
-                return `${someObj.name}`;
+            nameWithStation({id, name}) {
+                return `${id} - ${name}`;
             },
 
             /* helper functions for multiselect */
