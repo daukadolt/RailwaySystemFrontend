@@ -219,7 +219,6 @@ let setNull = obj => setAll(obj, null);
                     }).catch(() => {
                         alert("create route not working")
                 })
-                this.$emit("toggleLoadingSpinner", false);
             },
             cancelRoute() {
                 employeesRepository.cancelRoute(this.cancelRouteData)
