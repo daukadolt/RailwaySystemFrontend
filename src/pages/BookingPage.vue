@@ -104,6 +104,7 @@ text-align: center;
 
 .move{
       padding-top: 3%;
+      padding-bottom: 3%;
  -webkit-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
 -moz-box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
 box-shadow: 5px 50px 64px -20px rgb(197, 211, 214);
