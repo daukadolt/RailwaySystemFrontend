@@ -60,12 +60,15 @@ export default {
         },
         methods: {
             loginUser() {
+                this.$emit("toggleLoadingSpinner", true);
                 passengersRepository.login(this.passengerLoginData)
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
+                this.$emit("toggleLoadingSpinner", false);
             },
             signUpUser() {
+                this.$emit("toggleLoadingSpinner", true);
                 passengersRepository.sign_up(this.passengerSignUpData)
                     .then(response => {
                         return passengersRepository.getPassengerInfo(response.data)
@@ -73,8 +76,10 @@ export default {
                     .then(response => {
                         this.authenticateUser(response.data);
                     });
+                this.$emit("toggleLoadingSpinner", false);
             },
             authenticateUser(passengerData) {
+                this.$emit("toggleLoadingSpinner", false);
                 this.$store.commit('setPassenger', passengerData);
                 this.$router.push("account");
             }

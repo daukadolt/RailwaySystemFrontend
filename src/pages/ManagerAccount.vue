@@ -199,12 +199,14 @@ let setNull = obj => setAll(obj, null);
                 this.newRouteData.dates.splice(index,1);
             },
             createRoute() {
+                this.$emit("toggleLoadingSpinner", true);
                 this.newRouteData.stations = this.newRouteData.stations.map(chosenStation => {
                     return {stationId: chosenStation.stationDetails.id, duration: chosenStation.duration };
                 });
                 this.newRouteData.LastStation = this.newRouteData.LastStation.id;
                 employeesRepository.createRoute(this.newRouteData)
                     .then(() => {
+                        this.$emit("toggleLoadingSpinner", false);
                         this.newRouteData = {
                             routeName:'',
                             carNum:null,
@@ -217,6 +219,7 @@ let setNull = obj => setAll(obj, null);
                     }).catch(() => {
                         alert("create route not working")
                 })
+                this.$emit("toggleLoadingSpinner", false);
             },
             cancelRoute() {
                 employeesRepository.cancelRoute(this.cancelRouteData)
