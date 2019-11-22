@@ -1,6 +1,8 @@
 <template>
 <div>
+    <form @submit.prevent = "updateSchedule">
     <div class="tableFrom">
+        
         <table class="travel" id='createRoute'>
         <tr>
             <th>Week Day</th>
@@ -13,9 +15,13 @@
             <td><input type = "number" v-model = "employeeWorkDay.end_hour" min="0" :max="23" placeholder="end_hour" ></td>
         </tr>
     </table>
-    </div>
+     </div>
+    <button type = "submit">Change Schedule</button>
+   
+        </form>
     
-    <button @click="updateSchedule">Change Schedule</button>
+    
+    
     <br><br>
     <div>
         <table class="travel">
