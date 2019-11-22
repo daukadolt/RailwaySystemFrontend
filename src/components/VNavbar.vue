@@ -6,9 +6,12 @@
         <img src="../assets/PicsArt_11-21-05.50.00.jpg" width="70" height="70">
         <ul>
             <li><router-link to="/">Home</router-link></li>
-            <li v-if="!this.$store.getters.isAuthenticated"><router-link to="/login">Login</router-link></li>
-            <li v-else><router-link to="/account"><button class="btn"><i class="fa fa-home"></i>{{this.$store.getters.getFullName}}</button></router-link></li>
+            <li v-if="!this.$store.getters.isAuthenticated && !this.$store.getters.isEmployeeAuthenticated"><router-link to="/login">Login</router-link></li>
+            <li v-if="this.$store.getters.isAuthenticated"><router-link to="/account"><button class="btn"><i class="fa fa-home"></i>{{this.$store.getters.getFullName}}</button></router-link></li>
             <li v-if="this.$store.getters.isAuthenticated" ><button @click="logout" class="logout">Logout</button></li>
+            <li v-if="this.$store.getters.isEmployeeManager" ><router-link to="/manager_account"><button class="logout">Manager homepage</button></router-link></li>
+            <li v-if="this.$store.getters.isEmployeeAgent" ><router-link to="/agent_account"><button class="logout">Agent homepage</button></router-link></li>
+            <li v-if="this.$store.getters.isEmployeeAuthenticated" ><button @click="logoutEmployee" class="logout">Logout employee</button></li>
         </ul>
     </div>
     </div>
@@ -26,7 +29,11 @@ export default {
         logout() {
                 this.$store.commit('setPassenger', null);
                 this.$router.push("/");
-            }
+            },
+        logoutEmployee() {
+            this.$store.commit('setEmployee', null);
+            this.$router.push("/emp_login");
+        }
     }
 }
 </script>
