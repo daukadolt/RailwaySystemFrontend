@@ -1,11 +1,11 @@
 <template>
     <div>
         <p v-if="message">Message: {{message}}</p>
-        <form @submit.prevent="loginUser">
+        <form @submit.prevent="loginUser" style="display: -webkit-inline-box!important; position: inherit; border-raduis: 0.5em"> 
             <p>Employee Login</p>
             <input type="text" v-model="employeeLoginData.email" placeholder="email" required>
             <input type="password" v-model="employeeLoginData.password" placeholder="password" required>
-            <button type="submit">Login</button>
+            <button type="submit" style = "background-color: rgb(146, 166, 223); border: 1px solid rgb(146, 166, 223); border-radius: 1em!important; padding: 10px 61px!important">Login</button>
         </form>
     </div>
 </template>
@@ -47,4 +47,7 @@ export default {
         }
     }
 </script>
+<style lang="scss" scoped>
+  @import "../components/LogIn.scss";
+</style>
     
