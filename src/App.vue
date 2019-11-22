@@ -18,7 +18,7 @@ export default {
   data() {
       return {
           image : 'https://blog.eurail.com/wp-content/uploads/2016/12/Train-in-Swiss-Alps.jpg',
-          showLoadingSpinner: true
+          showLoadingSpinner: false
       }
     },
   components: {
