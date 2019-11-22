@@ -9,8 +9,8 @@
         </tr>
         <tr v-for="(employeeWorkDay , i) in employeeWorkDayList " :key="i">
             <td>{{employeeWorkDay.week_day}}</td>
-            <td><input v-model = "employeeWorkDay.start_hour" placeholder="start_hour" ></td>
-            <td><input v-model = "employeeWorkDay.end_hour" placeholder="end_hour" ></td>
+            <td><input type = "number" v-model = "employeeWorkDay.start_hour" min="0" :max="23" placeholder="start_hour" ></td>
+            <td><input type = "number" v-model = "employeeWorkDay.end_hour" min="0" :max="23" placeholder="end_hour" ></td>
         </tr>
     </table>
     </div>
@@ -21,7 +21,7 @@
         <table class="travel">
             <tr>
                 <th>Salary</th>
-                <th><input type = "number" placeholder= "salary" v-model = "employee.salary"></th>
+                <th><input type = "number" min="0" placeholder= "salary" v-model = "employee.salary"></th>
             </tr>
         </table>
         
