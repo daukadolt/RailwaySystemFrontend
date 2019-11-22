@@ -1,7 +1,7 @@
 <template>
     <div>
         <p v-if="message">Message: {{message}}</p>
-        <form @submit.prevent="loginUser" style="display: -webkit-inline-box!important; position: inherit; border-raduis: 0.5em"> 
+        <form @submit.prevent="loginUser" class="cont" style="display: -webkit-inline-box!important; position: inherit; border-raduis: 0.5em"> 
             <p>Employee Login</p>
             <input type="text" v-model="employeeLoginData.email" placeholder="email" required>
             <input type="password" v-model="employeeLoginData.password" placeholder="password" required>
@@ -49,5 +49,12 @@ export default {
 </script>
 <style lang="scss" scoped>
   @import "../components/LogIn.scss";
+  .cont{
+      margin-top: 4%;
+      border-radius: 0.9em;
+        -webkit-box-shadow: -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        -moz-box-shadow:    -1px 6px 12px 0px rgba(50, 50, 50, 1);
+        box-shadow:         -1px 6px 12px 0px rgba(50, 50, 50, 1);
+  }
 </style>
     

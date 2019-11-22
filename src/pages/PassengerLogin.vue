@@ -32,6 +32,7 @@
             <button type="submit">sign up</button>
         </form>
             </div>
+            <li><router-link to="/emp_login" style="color:white; font-size:20px; margin-top:7px">Are you an Employee?</router-link></li>
         </article>
     </div>
 </template>
