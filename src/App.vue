@@ -3,7 +3,7 @@
  'height':'100vh' }">
   <div id="app">
     <VNavbar/>
-    <router-view/>
+    <router-view v-on:toggleLoadingSpinner="toggleLoadingSpinner"/>
     <div v-if="showLoadingSpinner" class="loadingSpinner" id="popup"><LoadingSpinner/></div>
   </div>
   </div>
@@ -18,13 +18,18 @@ export default {
   data() {
       return {
           image : 'https://blog.eurail.com/wp-content/uploads/2016/12/Train-in-Swiss-Alps.jpg',
-          showLoadingSpinner: true
+          showLoadingSpinner: false
       }
     },
   components: {
     VNavbar,
     LoadingSpinner
-  }
+  },
+    methods: {
+        toggleLoadingSpinner(showLoadingSpinner) {
+            this.showLoadingSpinner = showLoadingSpinner;
+        }
+    }
 }
 </script>
 

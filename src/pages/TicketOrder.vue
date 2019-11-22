@@ -115,6 +115,7 @@ const routesRepository = repositoryFactory.get("routes");
     },
     methods: {
         bookTickets() {
+            this.$emit("toggleLoadingSpinner", true);
             let passengersData = [];
             this.ticketList.forEach(seat => {
                 passengersData.push({
@@ -138,11 +139,13 @@ const routesRepository = repositoryFactory.get("routes");
                 passengers: passengersData
             })
                 .then(() => {
+                    this.$emit("toggleLoadingSpinner", false);
                     alert("Tickets have been successfully purchased! Please check your account");
                 })
                 .catch(() => {
                     alert("error!");
-                })
+                });
+            this.$emit("toggleLoadingSpinner", false);
         }
     },
     components: {
