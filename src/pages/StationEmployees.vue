@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link :to="{path: 'manager_account'}"><button>Go Back</button></router-link>
+        <router-link :to="{path: 'manager_account'}"><button class="btn">Go Back</button></router-link>
         <div class="tabs">
             <div class="heading">Station #{{this.$route.query.stationId}}</div>
             <table class="travel" id='Station Employees'>
@@ -160,5 +160,24 @@ export default {
     }
     .travel th:last-child{
         border-top-right-radius: 10px;
+    }
+    
+    .btn{
+        display:inline-block;
+        padding:0em 0.4em;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.15em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-weight:100;
+        color:#FFFFFF;
+        background-color: rgb(146, 166, 223);
+        box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+        text-align:center;
+        position:relative;
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 </style>

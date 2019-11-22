@@ -105,7 +105,9 @@
                     <input type="checkbox" @change="toggleLogging" v-model="loggerToggleValue">
                     <span class="slider round"></span>
                     </label>
-                    <button @click="fetchLoggerText">Update</button>
+                    <br>
+                    <br>
+                    <button @click="fetchLoggerText" class="btn">Update</button>
                     </div>
 
                     <textarea v-model="loggerLogs" class="textArea" placeholder="abc" disabled> </textarea>

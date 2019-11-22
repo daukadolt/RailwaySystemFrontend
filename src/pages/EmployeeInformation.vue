@@ -1,6 +1,6 @@
 <template>
 <div>
-    <router-link :to="{path: 'station_employees', query: {stationId: employeeData.stationId}}"><button>Go Back</button></router-link>
+    <router-link :to="{path: 'station_employees', query: {stationId: employeeData.stationId}}"><button class="btn"> Go Back</button></router-link>
     <form @submit.prevent = "updateSchedule">
     <div class="tableFrom">
         
@@ -17,7 +17,9 @@
         </tr>
     </table>
      </div>
-    <button type = "submit">Change Schedule</button>
+     <br>
+     <br>
+    <button type = "submit" class="btn">Change Schedule</button>
    
         </form>
     
@@ -35,7 +37,9 @@
         
 
     </div>
-    <button type="submit">Update Salary</button>
+    <br>
+    <br>
+    <button type="submit" class="btn">Update Salary</button>
     </form>
 </div>
 </template>
@@ -183,16 +187,53 @@ const employeesRepository = repositoryFactory.get("employees");
     .travel {
         font-family: arial, sans-serif;
         display: inline;
+        border-collapse: collapse;
     }
     .travel td, th {
         margin-top:40px;
         border: 1px solid #dddddd;
         padding: 8px;
     }
-    .travel tr:nth-child(odd) {
+    .travel tr{
         background-color:#fff ;
     }
-    .travel tr:nth-child(even) {
-        background-color:#888;
+    .travel td:nth-child(:last-child) {
+        border-start-end-radius: 10px;
+    
+    }
+    .travel th{
+        background-color: rgb(146, 166, 223);
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .secondtable {
+        width:500px
+    }
+    .travel th:first-child{
+        background-color: rgb(146, 166, 223);
+        border-top-left-radius: 10px;
+    }
+    .travel th:last-child{
+        background-color: rgb(146, 166, 223);
+        border-top-right-radius: 10px;
+    }
+    .btn{
+        display:inline-block;
+        padding:0em 0.4em;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.15em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-weight:100;
+        color:#FFFFFF;
+        background-color: rgb(146, 166, 223);
+        box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+        text-align:center;
+        position:relative;
+    }
+    .btn:hover{
+        columns: white;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 </style>
