@@ -1,5 +1,6 @@
 <template>
 <div>
+    <router-link :to="{path: 'station_employees', query: {stationId: employeeData.stationId}}"><button>Go Back</button></router-link>
     <form @submit.prevent = "updateSchedule">
     <div class="tableFrom">
         
